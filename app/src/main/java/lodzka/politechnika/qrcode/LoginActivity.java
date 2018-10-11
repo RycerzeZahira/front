@@ -1,11 +1,10 @@
 package lodzka.politechnika.qrcode;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,22 +13,36 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lodzka.politechnika.qrcode.api.ApiUtils;
+import lodzka.politechnika.qrcode.api.UserApi;
+import lodzka.politechnika.qrcode.api.payload.AuthenticationRequest;
+import lodzka.politechnika.qrcode.api.payload.JwtAuthenticationResponse;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private UserApi userApi;
 
-    @BindView(lodzka.politechnika.qrcode.R.id.input_email) EditText _emailText;
-    @BindView(lodzka.politechnika.qrcode.R.id.input_password) EditText _passwordText;
-    @BindView(lodzka.politechnika.qrcode.R.id.btn_login) Button _loginButton;
-    @BindView(lodzka.politechnika.qrcode.R.id.link_signup) TextView _signupLink;
-    
+    @BindView(lodzka.politechnika.qrcode.R.id.input_email)
+    EditText _emailText;
+    @BindView(lodzka.politechnika.qrcode.R.id.input_password)
+    EditText _passwordText;
+    @BindView(lodzka.politechnika.qrcode.R.id.btn_login)
+    Button _loginButton;
+    @BindView(lodzka.politechnika.qrcode.R.id.link_signup)
+    TextView _signupLink;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(lodzka.politechnika.qrcode.R.layout.activity_login);
         ButterKnife.bind(this);
-        
+        userApi = ApiUtils.getAUserApi();
+
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -61,28 +74,40 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+/*        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
+        progressDialog.show();*/
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        loginUserPost(email, password);
 
-        // TODO: Implement your own authentication logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
     }
 
+    private void loginUserPost(String email, String password) {
+        AuthenticationRequest request = new AuthenticationRequest(email, password);
+        userApi.loginUser(request).enqueue(new Callback<JwtAuthenticationResponse>() {
+            @Override
+            public void onResponse(Call<JwtAuthenticationResponse> call, Response<JwtAuthenticationResponse> response) {
+                if (response.isSuccessful()) {
+                    ApiUtils.setToken(response.body().getAccessToken());
+                    Log.d(TAG, "onResponse: post submitted to API");
+                    onLoginSuccess();
+                } else {
+                    Log.d(TAG, "onFailure: unable to submit post to api");
+                    onLoginFailed();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JwtAuthenticationResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: unable to submit post to api");
+                onLoginFailed();
+            }
+        });
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
