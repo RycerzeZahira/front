@@ -7,9 +7,18 @@ public class ApiUtils {
     private ApiUtils() {
     }
 
-    public static final String BASE_URL = "https://api-qr-code.herokuapp.com/";
+    private static final String BASE_URL = "https://api-qr-code.herokuapp.com/";
+    private static String token;
 
     public static UserApi getAUserApi() {
         return RetrofitClient.getClient(BASE_URL).create(UserApi.class);
+    }
+
+    public static String getToken() {
+        return token;
+    }
+
+    public static void setToken(String token) {
+        ApiUtils.token = token;
     }
 }
