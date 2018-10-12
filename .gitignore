@@ -8,4 +8,4 @@
 /captures
 *.iml
 app/app.iml
-app/build.gradle
+.idea/modules.xml
