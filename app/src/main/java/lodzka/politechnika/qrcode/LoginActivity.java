@@ -1,5 +1,6 @@
 package lodzka.politechnika.qrcode;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import lodzka.politechnika.qrcode.api.ApiUtils;
 import lodzka.politechnika.qrcode.api.UserApi;
 import lodzka.politechnika.qrcode.api.payload.AuthenticationRequest;
 import lodzka.politechnika.qrcode.api.payload.JwtAuthenticationResponse;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,12 +36,16 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(lodzka.politechnika.qrcode.R.id.link_signup)
     TextView _signupLink;
 
+    ProgressDialog progressDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(lodzka.politechnika.qrcode.R.layout.activity_login);
         ButterKnife.bind(this);
         userApi = ApiUtils.getAUserApi();
+        progressDialog = new ProgressDialog(LoginActivity.this,
+                lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -74,11 +78,10 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-/*        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
+
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
-        progressDialog.show();*/
+        progressDialog.show();
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
@@ -94,16 +97,21 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ApiUtils.setToken(response.body().getAccessToken());
                     Log.d(TAG, "onResponse: post submitted to API");
+                    progressDialog.dismiss();
                     onLoginSuccess();
+
                 } else {
                     Log.d(TAG, "onFailure: unable to submit post to api");
+                    progressDialog.dismiss();
                     onLoginFailed();
+
                 }
             }
 
             @Override
             public void onFailure(Call<JwtAuthenticationResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure: unable to submit post to api");
+                progressDialog.dismiss();
                 onLoginFailed();
             }
         });
@@ -128,6 +136,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+
+        SharedPreferences.Editor editor = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putBoolean(MainActivity.LOGIN_STATUS, true);
+        editor.apply();
+
+
         _loginButton.setEnabled(true);
         finish();
     }
