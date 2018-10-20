@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="start"
+    android:background="#4A92CD"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:orientation="horizontal"
+    android:paddingTop="40dp"
+    android:paddingLeft="13dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/nav_header_imageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/ellipse" />
+
+    <EditText
+        android:background="@drawable/edit_text_background"
+        android:layout_width="200dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:textCursorDrawable="@null"
+        android:hint="Search Your List"/>
+</LinearLayout>
