@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">QR Code</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="first_name">Imię</string>
+    <string name="last_name">Nazwisko</string>
+    <string name="email">Email</string>
+    <string name="email_address">Adres email</string>
+    <string name="password">Hasło</string>
+    <string name="re_enter_password">Powtórz hasło</string>
+    <string name="sign_up">Zarejestruj się</string>
+    <string name="alerady_a_member_login">Jesteś użytkownikiem? Zaloguj się</string>
+    <string name="forgot_your_password">Zapomniałeś hasła?</string>
+    <string name="log_in">Zaloguj się</string>
+    <string name="dont_have_an_account">Nie masz konta?</string>
+    <string name="at_least_3_characters">Conajmniej 3 litery</string>
+    <string name="enter_valid_email">Niepoprawny email</string>
+    <string name="longer_than_8">Za krótkie (8)</string>
+    <string name="password_do_not_match">Hasła nie pasują</string>
+</resources>

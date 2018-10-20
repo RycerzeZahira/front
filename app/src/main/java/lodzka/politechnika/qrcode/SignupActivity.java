@@ -1,5 +1,6 @@
 package lodzka.politechnika.qrcode;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,8 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(lodzka.politechnika.qrcode.R.id.link_login)
     TextView _loginLink;
 
+    ProgressDialog progressDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class SignupActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         _signupButton = findViewById(R.id.btn_signup);
         userApi = ApiUtils.getAUserApi();
+
+        progressDialog = new ProgressDialog(SignupActivity.this,
+                lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +79,11 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Signing up...");
+        progressDialog.show();
+
+
         String firstName = _firstName.getText().toString();
         String lastName = _lastName.getText().toString();
         String email = _emailText.getText().toString();
@@ -89,9 +100,11 @@ public class SignupActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: post submitted to API");
+                    progressDialog.dismiss();
                     onSignupSuccess();
                 } else {
                     Log.d(TAG, "onFailure: unable to submit post to api");
+                    progressDialog.dismiss();
                     onSignupFailed();
                 }
             }
@@ -99,6 +112,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.d(TAG, "onFailure: unable to submit post to api");
+                progressDialog.dismiss();
                 onSignupFailed();
             }
         });
@@ -121,8 +135,9 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Disable going back to the MainActivity
-        moveTaskToBack(true);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public boolean validate() {
@@ -135,14 +150,14 @@ public class SignupActivity extends AppCompatActivity {
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
-            _firstName.setError("at least 3 characters");
+            _firstName.setError(getBaseContext().getResources().getString(R.string.at_least_3_characters));
             valid = false;
         } else {
             _firstName.setError(null);
         }
 
         if (address.isEmpty()) {
-            _lastName.setError("Enter Valid Address");
+            _lastName.setError(getBaseContext().getResources().getString(R.string.at_least_3_characters));
             valid = false;
         } else {
             _lastName.setError(null);
@@ -150,7 +165,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
             valid = false;
         } else {
             _emailText.setError(null);
@@ -158,14 +173,14 @@ public class SignupActivity extends AppCompatActivity {
 
 
         if (password.isEmpty() || password.length() < 8) {
-            _passwordText.setError("longer than 8");
+            _passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
             valid = false;
         } else {
             _passwordText.setError(null);
         }
 
         if (reEnterPassword.isEmpty() || reEnterPassword.length() < 8 || !(reEnterPassword.equals(password))) {
-            _reEnterPasswordText.setError("Password Do not match");
+            _reEnterPasswordText.setError(getBaseContext().getResources().getString(R.string.password_do_not_match));
             valid = false;
         } else {
             _reEnterPasswordText.setError(null);
