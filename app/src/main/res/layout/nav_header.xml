@@ -27,4 +27,5 @@
         android:layout_height="wrap_content"
         android:textCursorDrawable="@null"
         android:hint="Search Your List"/>
+
 </LinearLayout>

@@ -25,16 +25,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
-        Boolean loginStatus = preferences.getBoolean(LOGIN_STATUS,false);
-        if (loginStatus == false) {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        Boolean loginStatus = preferences.getBoolean(LOGIN_STATUS, false);
+        if (!loginStatus) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,31 +58,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.my_lists) {
-            // Handle the camera action
+            //TODO
         } else if (id == R.id.new_list) {
 
+            //TODO
         } else if (id == R.id.create_qrcode) {
 
-        } else if (id == R.id.account){
-
+            //TODO
+        } else if (id == R.id.account) {
+            //TODO
         } else if (id == R.id.logout) {
             logout();
         }
@@ -97,13 +87,12 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void logout(){
+    private void logout() {
         SharedPreferences.Editor editor = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean(MainActivity.LOGIN_STATUS, false);
         editor.apply();
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-
     }
 }
