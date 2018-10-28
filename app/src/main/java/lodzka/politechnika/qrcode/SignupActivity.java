@@ -24,11 +24,6 @@ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = SignupActivity.class.getSimpleName();
     private UserApi userApi;
 
-
-    @BindView(lodzka.politechnika.qrcode.R.id.input_name)
-    EditText _firstName;
-    @BindView(lodzka.politechnika.qrcode.R.id.input_address)
-    EditText _lastName;
     @BindView(lodzka.politechnika.qrcode.R.id.input_email)
     EditText _emailText;
     @BindView(lodzka.politechnika.qrcode.R.id.input_password)
@@ -83,18 +78,15 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Signing up...");
         progressDialog.show();
 
-
-        String firstName = _firstName.getText().toString();
-        String lastName = _lastName.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
-        registerUserPost(firstName, lastName, email, password);
+        registerUserPost(email, password);
 
     }
 
 
-    public void registerUserPost(String firstName, String lastName, String email, String password) {
-        User user = new User(firstName, lastName, email, password);
+    public void registerUserPost(String email, String password) {
+        User user = new User(email, password);
         userApi.registerUser(user).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -143,26 +135,9 @@ public class SignupActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String name = _firstName.getText().toString();
-        String address = _lastName.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
-
-        if (name.isEmpty() || name.length() < 3) {
-            _firstName.setError(getBaseContext().getResources().getString(R.string.at_least_3_characters));
-            valid = false;
-        } else {
-            _firstName.setError(null);
-        }
-
-        if (address.isEmpty()) {
-            _lastName.setError(getBaseContext().getResources().getString(R.string.at_least_3_characters));
-            valid = false;
-        } else {
-            _lastName.setError(null);
-        }
-
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
