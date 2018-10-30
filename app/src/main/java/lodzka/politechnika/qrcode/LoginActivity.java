@@ -136,12 +136,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-
-        SharedPreferences.Editor editor = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putBoolean(MainActivity.LOGIN_STATUS, true);
-        editor.apply();
-
-
         _loginButton.setEnabled(true);
         finish();
     }

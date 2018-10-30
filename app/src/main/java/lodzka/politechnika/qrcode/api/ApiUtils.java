@@ -14,6 +14,14 @@ public class ApiUtils {
         return RetrofitClient.getClient(BASE_URL).create(UserApi.class);
     }
 
+    public static GroupApi getGroupApi() {
+        return RetrofitClient.getClient(BASE_URL).create(GroupApi.class);
+    }
+
+    public static FormApi getFormApi() {
+        return RetrofitClient.getClient(BASE_URL).create(FormApi.class);
+    }
+
     public static String getToken() {
         return token;
     }

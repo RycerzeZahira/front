@@ -52,7 +52,7 @@ public class QRCodeAdapter extends RecyclerView.Adapter<QRCodeAdapter.QRCodeView
 
         QRCodeForm qrCodeForm = qrCodeFormList.get(position);
         holder.fieldName.setText(qrCodeForm.getFieldName());
-        holder.fieldValue.setText(qrCodeForm.getFieldValue());
+
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,6 @@ public class QRCodeAdapter extends RecyclerView.Adapter<QRCodeAdapter.QRCodeView
         public QRCodeViewHolder(View itemView) {
             super(itemView);
             fieldName = itemView.findViewById(R.id.text1);
-            fieldValue = itemView.findViewById(R.id.text2);
             deleteButton =itemView.findViewById(R.id.delete_button);
         }
     }

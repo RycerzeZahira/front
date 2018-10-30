@@ -6,11 +6,9 @@ package lodzka.politechnika.qrcode.model;
 
 public class QRCodeForm {
     private String fieldName;
-    private String fieldValue;
 
-    public QRCodeForm(String fieldName, String fieldValue) {
+    public QRCodeForm(String fieldName) {
         this.fieldName = fieldName;
-        this.fieldValue = fieldValue;
     }
 
     public String getFieldName() {
@@ -21,19 +19,10 @@ public class QRCodeForm {
         this.fieldName = fieldName;
     }
 
-    public String getFieldValue() {
-        return fieldValue;
-    }
-
-    public void setFieldValue(String fieldValue) {
-        this.fieldValue = fieldValue;
-    }
-
     @Override
     public String toString() {
         return "QRCodeForm{" +
                 "fieldName='" + fieldName + '\'' +
-                ", fieldValue='" + fieldValue + '\'' +
                 '}';
     }
 }
