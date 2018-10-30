@@ -25,15 +25,15 @@ public class SignupActivity extends AppCompatActivity {
     private UserApi userApi;
 
     @BindView(lodzka.politechnika.qrcode.R.id.input_email)
-    EditText _emailText;
+    EditText emailText;
     @BindView(lodzka.politechnika.qrcode.R.id.input_password)
-    EditText _passwordText;
+    EditText passwordText;
     @BindView(lodzka.politechnika.qrcode.R.id.input_reEnterPassword)
-    EditText _reEnterPasswordText;
+    EditText reEnterPasswordText;
     @BindView(R.id.btn_signup)
-    Button _signupButton;
+    Button signupButton;
     @BindView(lodzka.politechnika.qrcode.R.id.link_login)
-    TextView _loginLink;
+    TextView loginLink;
 
     ProgressDialog progressDialog;
 
@@ -42,20 +42,20 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(lodzka.politechnika.qrcode.R.layout.activity_signup);
         ButterKnife.bind(this);
-        _signupButton = findViewById(R.id.btn_signup);
+        signupButton = findViewById(R.id.btn_signup);
         userApi = ApiUtils.getAUserApi();
 
         progressDialog = new ProgressDialog(SignupActivity.this,
                 lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
 
-        _signupButton.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
             }
         });
 
-        _loginLink.setOnClickListener(new View.OnClickListener() {
+        loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -78,8 +78,8 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Signing up...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String email = emailText.getText().toString();
+        String password = passwordText.getText().toString();
         registerUserPost(email, password);
 
     }
@@ -111,7 +111,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
+        signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         Toast.makeText(getBaseContext(), "Signup completed. Please log in", Toast.LENGTH_LONG).show();
@@ -122,7 +122,7 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Signup failed", Toast.LENGTH_LONG).show();
 
-        _signupButton.setEnabled(true);
+        signupButton.setEnabled(true);
     }
 
     @Override
@@ -135,30 +135,30 @@ public class SignupActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
+        String email = emailText.getText().toString();
+        String password = passwordText.getText().toString();
+        String reEnterPassword = reEnterPasswordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
+            emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
             valid = false;
         } else {
-            _emailText.setError(null);
+            emailText.setError(null);
         }
 
 
         if (password.isEmpty() || password.length() < 8) {
-            _passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
+            passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
             valid = false;
         } else {
-            _passwordText.setError(null);
+            passwordText.setError(null);
         }
 
         if (reEnterPassword.isEmpty() || reEnterPassword.length() < 8 || !(reEnterPassword.equals(password))) {
-            _reEnterPasswordText.setError(getBaseContext().getResources().getString(R.string.password_do_not_match));
+            reEnterPasswordText.setError(getBaseContext().getResources().getString(R.string.password_do_not_match));
             valid = false;
         } else {
-            _reEnterPasswordText.setError(null);
+            reEnterPasswordText.setError(null);
         }
 
         return valid;

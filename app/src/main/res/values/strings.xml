@@ -19,7 +19,14 @@
     <string name="longer_than_8">Longer than 8</string>
     <string name="password_do_not_match">Password do not match</string>
     <string name="title_activity_main2">Main2Activity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_cannot_be_empty">Title cannot be empty</string>
+    <string name="form_created">Form created</string>
+    <string name="form_creation_failed">Form creation failed</string>
+    <string name="no_fields_added">No fields added</string>
+    <string name="pick_expired_date">Pick expired date</string>
+    <string name="text_value">Text</string>\
+    <string name="number_value">Number</string>
+    <string name="pick_date">Pick date</string>
 </resources>
