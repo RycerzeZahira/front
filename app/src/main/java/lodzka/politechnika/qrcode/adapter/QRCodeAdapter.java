@@ -1,16 +1,11 @@
 package lodzka.politechnika.qrcode.adapter;
 
-import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -52,7 +47,7 @@ public class QRCodeAdapter extends RecyclerView.Adapter<QRCodeAdapter.QRCodeView
 
         QRCodeForm qrCodeForm = qrCodeFormList.get(position);
         holder.fieldName.setText(qrCodeForm.getFieldName());
-        holder.fieldValue.setText(qrCodeForm.getFieldValue());
+        holder.fieldType.setText(qrCodeForm.getFieldType());
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,15 +68,15 @@ public class QRCodeAdapter extends RecyclerView.Adapter<QRCodeAdapter.QRCodeView
 
     public class QRCodeViewHolder extends RecyclerView.ViewHolder {
         private TextView fieldName;
-        private TextView fieldValue;
+        private TextView fieldType;
         private ImageButton deleteButton;
 
 
         public QRCodeViewHolder(View itemView) {
             super(itemView);
             fieldName = itemView.findViewById(R.id.text1);
-            fieldValue = itemView.findViewById(R.id.text2);
             deleteButton =itemView.findViewById(R.id.delete_button);
+            fieldType = itemView.findViewById(R.id.text2);
         }
     }
 

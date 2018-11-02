@@ -18,4 +18,12 @@
     <string name="enter_valid_email">Niepoprawny email</string>
     <string name="longer_than_8">Za krótkie (8)</string>
     <string name="password_do_not_match">Hasła nie pasują</string>
+    <string name="title_cannot_be_empty">Tytuł nie może być pusty</string>
+    <string name="form_created">Formularz stworzony</string>
+    <string name="form_creation_failed">Błąd podczas tworzenia</string>
+    <string name="no_fields_added">Nie dodano pól</string>
+    <string name="pick_expired_date">Wprowadź date wygaśnięcia</string>
+    <string name="text_value">Tekst</string>\
+    <string name="number_value">Liczba</string>
+    <string name="pick_date">Wybierz date</string>
 </resources>
