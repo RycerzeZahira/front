@@ -22,16 +22,16 @@ public class SignUpUITest {
 
     @Test
     public void ensureTextTypingWorks() {
-        onView(withId(R.id.input_name)).perform(typeText("Frank"), closeSoftKeyboard());
-        onView(withId(R.id.input_name)).check(matches(withText("Frank")));
+//        onView(withId(R.id.input_name)).perform(typeText("Frank"), closeSoftKeyboard());
+//        onView(withId(R.id.input_name)).check(matches(withText("Frank")));
         onView(withId(R.id.input_email)).perform(typeText("frank@gmail.com"),closeSoftKeyboard());
         onView(withId(R.id.input_email)).check(matches(withText("frank@gmail.com")));
     }
 
     @Test
     public void ensureTextsAreRight(){
-        onView(withId(R.id.btn_signup)).check(matches(withText("Create Account")));
-        onView(withId(R.id.link_login)).check(matches(withText("Already a member? Login")));
+        onView(withId(R.id.btn_signup)).check(matches(withText("Sign up")));
+        onView(withId(R.id.link_login)).check(matches(withText("Already a member? Log in")));
     }
 
 }
