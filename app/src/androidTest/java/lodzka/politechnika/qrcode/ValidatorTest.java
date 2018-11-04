@@ -51,10 +51,6 @@ public class ValidatorTest {
     @Test
     public void validateShouldPass() {
         assertTrue(validator.validate(email, password));
-    }
-
-    @Test
-    public void validateWithPassConfShouldPass() {
         assertTrue(validator.validate(email, password, passwordConfirmation));
     }
 

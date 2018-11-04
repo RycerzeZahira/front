@@ -1,6 +1,6 @@
 package lodzka.politechnika.qrcode.client;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -23,15 +23,14 @@ public class RetrofitClient {
                     .addNetworkInterceptor(new Interceptor() {
 
                         @Override
-                        public Response intercept(Chain chain) throws IOException {
+                        public Response intercept(@NonNull Chain chain) throws IOException {
                             Request.Builder builder = chain.request().newBuilder();
                             if (ApiUtils.getToken() != null)
                                 builder.addHeader("Authorization", "Bearer " + ApiUtils.getToken());
                             builder.addHeader("Accept-Language", Locale.getDefault().getDisplayLanguage());
                             Request request = builder.build();
-                            Response response = chain.proceed(request);
 
-                            return response;
+                            return chain.proceed(request);
                         }
                     }).build()).baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build();
         }
