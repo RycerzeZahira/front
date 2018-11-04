@@ -68,15 +68,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Log.d(TAG, "Login");
-
         if (!validate()) {
             onLoginFailed();
             return;
         }
 
         loginButton.setEnabled(false);
-
 
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
@@ -85,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
         loginUserPost(email, password);
-
     }
 
     private void loginUserPost(String email, String password) {
@@ -95,12 +91,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<JwtAuthenticationResponse> call, Response<JwtAuthenticationResponse> response) {
                 if (response.isSuccessful()) {
                     ApiUtils.setToken(response.body().getAccessToken());
-                    Log.d(TAG, "onResponse: post submitted to API");
                     progressDialog.dismiss();
                     onLoginSuccess();
 
                 } else {
-                    Log.d(TAG, "onFailure: unable to submit post to api");
                     progressDialog.dismiss();
                     onLoginFailed();
 
@@ -109,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<JwtAuthenticationResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: unable to submit post to api");
                 progressDialog.dismiss();
                 onLoginFailed();
             }
@@ -141,25 +134,29 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean validate() {
-        boolean valid = true;
-
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            emailText.setError(null);
-        }
+        return isValidEmail(email) && isValidPassword(password);
+    }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordText.setError("between 4 and 10 alphanumeric characters");
-            valid = false;
+    private boolean isValidPassword(String password) {
+        if (password.isEmpty() || password.length() < 8) {
+            passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
+            return false;
         } else {
             passwordText.setError(null);
+            return true;
         }
+    }
 
-        return valid;
+    private boolean isValidEmail(String email) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
+            return false;
+        } else {
+            emailText.setError(null);
+            return true;
+        }
     }
 }

@@ -15,7 +15,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
-public class SignUpUITest {
+public class LoginUITest {
 
     @Rule
     public ActivityTestRule<SignupActivity> signupActivityActivityTestRule = new ActivityTestRule<SignupActivity>(SignupActivity.class);

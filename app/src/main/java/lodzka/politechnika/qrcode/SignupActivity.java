@@ -67,7 +67,6 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void signup() {
-        Log.d(TAG, "Signup");
 
         if (!validate()) {
             onSignupFailed();
@@ -91,11 +90,9 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: post submitted to API");
                     progressDialog.dismiss();
                     onSignupSuccess();
                 } else {
-                    Log.d(TAG, "onFailure: unable to submit post to api");
                     progressDialog.dismiss();
                     onSignupFailed();
                 }
@@ -103,7 +100,6 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d(TAG, "onFailure: unable to submit post to api");
                 progressDialog.dismiss();
                 onSignupFailed();
             }
@@ -114,13 +110,13 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        Toast.makeText(getBaseContext(), "Signup completed. Please log in", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Sign up completed. Please log in", Toast.LENGTH_LONG).show();
         startActivity(intent);
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Signup failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Sign up failed", Toast.LENGTH_LONG).show();
 
         signupButton.setEnabled(true);
     }
@@ -133,34 +129,36 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public boolean validate() {
-        boolean valid = true;
-
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
         String reEnterPassword = reEnterPasswordText.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
-            valid = false;
-        } else {
-            emailText.setError(null);
-        }
+        return isValidEmail(email) && isValidPassword(password, reEnterPassword);
+    }
 
-
+    private boolean isValidPassword(String password, String reEnterPassword) {
         if (password.isEmpty() || password.length() < 8) {
             passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
-            valid = false;
-        } else {
-            passwordText.setError(null);
+            return false;
         }
-
-        if (reEnterPassword.isEmpty() || reEnterPassword.length() < 8 || !(reEnterPassword.equals(password))) {
+        else if(reEnterPassword.isEmpty() || !(reEnterPassword.equals(password))) {
             reEnterPasswordText.setError(getBaseContext().getResources().getString(R.string.password_do_not_match));
-            valid = false;
-        } else {
-            reEnterPasswordText.setError(null);
+            return false;
         }
+        else {
+            passwordText.setError(null);
+            reEnterPasswordText.setError(null);
+            return true;
+        }
+    }
 
-        return valid;
+    private boolean isValidEmail(String email) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
+            return false;
+        } else {
+            emailText.setError(null);
+            return true;
+        }
     }
 }
