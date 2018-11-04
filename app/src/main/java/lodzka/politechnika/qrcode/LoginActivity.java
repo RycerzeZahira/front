@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private UserApi userApi;
+    private Validator validator = new Validator();
 
     @BindView(lodzka.politechnika.qrcode.R.id.input_email)
     EditText emailText;
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(lodzka.politechnika.qrcode.R.layout.activity_login);
         ButterKnife.bind(this);
         userApi = ApiUtils.getAUserApi();
+        validator.setContext(this);
         progressDialog = new ProgressDialog(LoginActivity.this,
                 lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
 
@@ -68,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-        if (!validate()) {
+        if (!validator.validate(emailText, passwordText)) {
             onLoginFailed();
             return;
         }
@@ -131,32 +133,5 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
         loginButton.setEnabled(true);
-    }
-
-    public boolean validate() {
-        String email = emailText.getText().toString();
-        String password = passwordText.getText().toString();
-
-        return isValidEmail(email) && isValidPassword(password);
-    }
-
-    private boolean isValidPassword(String password) {
-        if (password.isEmpty() || password.length() < 8) {
-            passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
-            return false;
-        } else {
-            passwordText.setError(null);
-            return true;
-        }
-    }
-
-    private boolean isValidEmail(String email) {
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
-            return false;
-        } else {
-            emailText.setError(null);
-            return true;
-        }
     }
 }

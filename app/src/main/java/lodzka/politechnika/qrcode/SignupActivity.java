@@ -21,8 +21,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
+
     private static final String TAG = SignupActivity.class.getSimpleName();
     private UserApi userApi;
+    private Validator validator = new Validator();
 
     @BindView(lodzka.politechnika.qrcode.R.id.input_email)
     EditText emailText;
@@ -44,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         signupButton = findViewById(R.id.btn_signup);
         userApi = ApiUtils.getAUserApi();
+        validator.setContext(this);
 
         progressDialog = new ProgressDialog(SignupActivity.this,
                 lodzka.politechnika.qrcode.R.style.AppTheme_Dark_Dialog);
@@ -68,7 +71,7 @@ public class SignupActivity extends AppCompatActivity {
 
     public void signup() {
 
-        if (!validate()) {
+        if (!validator.validate(emailText, passwordText, reEnterPasswordText)) {
             onSignupFailed();
             return;
         }
@@ -126,39 +129,5 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    public boolean validate() {
-        String email = emailText.getText().toString();
-        String password = passwordText.getText().toString();
-        String reEnterPassword = reEnterPasswordText.getText().toString();
-
-        return isValidEmail(email) && isValidPassword(password, reEnterPassword);
-    }
-
-    private boolean isValidPassword(String password, String reEnterPassword) {
-        if (password.isEmpty() || password.length() < 8) {
-            passwordText.setError(getBaseContext().getResources().getString(R.string.longer_than_8));
-            return false;
-        }
-        else if(reEnterPassword.isEmpty() || !(reEnterPassword.equals(password))) {
-            reEnterPasswordText.setError(getBaseContext().getResources().getString(R.string.password_do_not_match));
-            return false;
-        }
-        else {
-            passwordText.setError(null);
-            reEnterPasswordText.setError(null);
-            return true;
-        }
-    }
-
-    private boolean isValidEmail(String email) {
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError(getBaseContext().getResources().getString(R.string.enter_valid_email));
-            return false;
-        } else {
-            emailText.setError(null);
-            return true;
-        }
     }
 }
