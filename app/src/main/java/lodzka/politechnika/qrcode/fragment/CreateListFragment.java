@@ -33,7 +33,7 @@ import lodzka.politechnika.qrcode.api.GroupApi;
 import lodzka.politechnika.qrcode.model.Elements;
 import lodzka.politechnika.qrcode.model.Group;
 import lodzka.politechnika.qrcode.model.QRCodeForm;
-import lodzka.politechnika.qrcode.model.QRCodeJsonObject;
+import lodzka.politechnika.qrcode.model.Form;
 import lodzka.politechnika.qrcode.model.Root;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -175,12 +175,12 @@ public class CreateListFragment extends Fragment {
                 root.setElements(elementsArrayList);
                 root.setParent(null);
 
-                QRCodeJsonObject qrCodeJsonObject = new QRCodeJsonObject();
-                qrCodeJsonObject.setGroupCode(groupItem.getCode());
-                qrCodeJsonObject.setExpiredDate(datePick.getText().toString());
-                qrCodeJsonObject.setRoot(root);
+                Form form = new Form();
+                form.setGroupCode(groupItem.getCode());
+                form.setExpiredDate(datePick.getText().toString());
+                form.setRoot(root);
 
-                formApi.createForm(qrCodeJsonObject).enqueue(new Callback<Void>() {
+                formApi.createForm(form).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {

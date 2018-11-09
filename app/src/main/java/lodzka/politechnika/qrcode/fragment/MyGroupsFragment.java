@@ -2,7 +2,6 @@ package lodzka.politechnika.qrcode.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,8 @@ import retrofit2.Response;
 public class MyGroupsFragment extends Fragment {
 
     private ArrayList<Group> groupArrayList = new ArrayList<>();
-    ArrayAdapter<Group> listAdapter;
-    ListView listView;
+    private ArrayAdapter<Group> listAdapter;
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
