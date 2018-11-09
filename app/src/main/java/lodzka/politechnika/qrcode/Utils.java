@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class Utils {
 
+    public final static String FORM = "form";
+    public final static String FORM_CODE = "formCode";
     public final static Integer SAVE_LENGTH = 32;
     public final static Character SPACE_CHAR = '_';
     private final static String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

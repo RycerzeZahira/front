@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Bartek on 2018-10-30.
  */
 
-public class QRCodeJsonObject {
+public class Form {
 
     @SerializedName("groupCode")
     @Expose
@@ -21,8 +21,11 @@ public class QRCodeJsonObject {
     @Expose
     private Root root;
 
+    @SerializedName("group")
+    private Group group;
 
-    public QRCodeJsonObject() {
+
+    public Form() {
     }
 
 
@@ -48,5 +51,9 @@ public class QRCodeJsonObject {
 
     public void setRoot(Root root) {
         this.root = root;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 }
