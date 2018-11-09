@@ -1,23 +1,24 @@
 package lodzka.politechnika.qrcode.model;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class Moderator {
 
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("password")
-    @Expose
-    private String password;
+
     @SerializedName("isLocked")
+    @Expose
     private boolean isLocked;
 
-    public User(String email, String password) {
+    public Moderator() {
+    }
+
+    public Moderator(String email, boolean isLocked) {
         this.email = email;
-        this.password = password;
+        this.isLocked = isLocked;
     }
 
     public String getEmail() {
@@ -26,14 +27,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isLocked() {

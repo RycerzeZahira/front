@@ -1,15 +1,18 @@
 package lodzka.politechnika.qrcode.model;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Bartek on 2018-10-30.
  */
 
-public class Root {
+public class Root implements Serializable {
 
     @SerializedName("type")
     @Expose
@@ -74,5 +77,10 @@ public class Root {
 
     public void setElements(ArrayList<Elements> elements) {
         this.elements = elements;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -4,12 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Set;
+
 /**
  * Created by Bartek on 2018-10-29.
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Group {
+
+    @SerializedName("moderator")
+    private User moderator;
+
+    @SerializedName("users")
+    private Set<User> users;
+
+    @SerializedName("expiredDate")
+    @Expose
+    private String expiredDate;
 
     @SerializedName("name")
     @Expose
@@ -19,10 +31,12 @@ public class Group {
     @Expose
     private String code;
 
-
     @SerializedName("publicGroup")
     @Expose
     private Boolean publicGroup;
+
+    @SerializedName("root")
+    private Root root;
 
 
     public Group(String name, String code, Boolean publicGroup) {
@@ -53,6 +67,22 @@ public class Group {
 
     public void setPublicGroup(Boolean publicGroup) {
         this.publicGroup = publicGroup;
+    }
+
+    public User getModerator() {
+        return moderator;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public String getExpiredDate() {
+        return expiredDate;
+    }
+
+    public Root getRoot() {
+        return root;
     }
 
     @Override
