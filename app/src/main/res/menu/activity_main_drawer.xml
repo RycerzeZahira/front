@@ -12,11 +12,15 @@
         <item
             android:id="@+id/new_list"
             android:icon="@drawable/new_list"
-            android:title="New List" />
+            android:title="Create New List" />
         <item
-            android:id="@+id/create_qrcode"
+            android:id="@+id/create_group"
             android:icon="@drawable/qr_code"
-            android:title="Create QR-Code" />
+            android:title="Create New Group" />
+        <item
+            android:id="@+id/my_groups"
+            android:icon="@drawable/qr_code"
+            android:title="My Groups" />
         <item
             android:id="@+id/account"
             android:icon="@drawable/person"

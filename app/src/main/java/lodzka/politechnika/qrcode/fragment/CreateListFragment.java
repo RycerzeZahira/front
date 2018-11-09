@@ -43,7 +43,7 @@ import retrofit2.Response;
  * Created by Bartek on 2018-10-28.
  */
 
-public class QRCodeCreateFragment extends Fragment {
+public class CreateListFragment extends Fragment {
 
     private QRCodeAdapter qrCodeAdapter;
     private List<QRCodeForm> qrCodeFormList;

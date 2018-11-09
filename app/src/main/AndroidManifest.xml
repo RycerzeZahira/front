@@ -32,7 +32,6 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".GroupsActivity"></activity>
     </application>
 
 </manifest>

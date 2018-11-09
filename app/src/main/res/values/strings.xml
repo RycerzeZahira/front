@@ -29,4 +29,8 @@
     <string name="text_value">Text</string>\
     <string name="number_value">Number</string>
     <string name="pick_date">Pick date</string>
+    <string name="list_added">List added</string>
+    <string name="group_added">Group added</string>
+    <string name="list_add_failed">Failed to add a list</string>
+    <string name="error_with_app">Error with application</string>
 </resources>
