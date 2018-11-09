@@ -14,8 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import lodzka.politechnika.qrcode.api.ApiUtils;
+import lodzka.politechnika.qrcode.fragment.CreateGroupFragment;
 import lodzka.politechnika.qrcode.fragment.MainFragment;
-import lodzka.politechnika.qrcode.fragment.QRCodeCreateFragment;
+import lodzka.politechnika.qrcode.fragment.CreateListFragment;
+import lodzka.politechnika.qrcode.fragment.MyGroupsFragment;
+import lodzka.politechnika.qrcode.fragment.MyListsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,18 +68,27 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.my_lists) {
-            //TODO
-        } else if (id == R.id.new_list) {
-
-            //TODO
-        }  else if (id == R.id.create_qrcode) {
-            fragment = new QRCodeCreateFragment();
-        } else if (id == R.id.account) {
-            //TODO
-        } else if (id == R.id.logout) {
-            logout();
+        switch (id){
+            case R.id.my_lists:
+                fragment = new MyListsFragment();
+                break;
+            case R.id.new_list:
+                fragment = new CreateListFragment();
+                break;
+            case R.id.create_group:
+                fragment = new CreateGroupFragment();
+                break;
+            case R.id.my_groups:
+                fragment = new MyGroupsFragment();
+                break;
+            case R.id.account:
+                //TODO
+                break;
+            case R.id.logout:
+                logout();
+                break;
         }
+
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.miscFragment, fragment);
