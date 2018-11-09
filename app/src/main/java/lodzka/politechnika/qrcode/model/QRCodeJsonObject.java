@@ -3,8 +3,6 @@ package lodzka.politechnika.qrcode.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 /**
  * Created by Bartek on 2018-10-30.
  */
