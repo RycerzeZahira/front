@@ -68,15 +68,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.my_lists:
                 fragment = new MyListsFragment();
                 break;
             case R.id.new_list:
                 fragment = new CreateListFragment();
-                break;
-            case R.id.create_group:
-                fragment = new CreateGroupFragment();
                 break;
             case R.id.my_groups:
                 fragment = new MyGroupsFragment();

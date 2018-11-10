@@ -36,7 +36,7 @@ public class AnswerFragment extends Fragment {
     }
 
     private void initialize(View view) {
-        listView = view.findViewById(R.id.listView);
+        listView = view.findViewById(R.id.recyclerView);
         saveButton = view.findViewById(R.id.save_button);
     }
 

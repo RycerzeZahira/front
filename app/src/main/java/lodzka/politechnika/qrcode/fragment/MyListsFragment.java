@@ -33,7 +33,7 @@ public class MyListsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.my_lists_fragment, viewGroup, false);
-        listView = view.findViewById(R.id.listView);
+        listView = view.findViewById(R.id.recyclerView);
         getLists();
         return view;
     }

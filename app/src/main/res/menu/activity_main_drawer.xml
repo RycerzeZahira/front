@@ -14,10 +14,6 @@
             android:icon="@drawable/new_list"
             android:title="Create New List" />
         <item
-            android:id="@+id/create_group"
-            android:icon="@drawable/qr_code"
-            android:title="Create New Group" />
-        <item
             android:id="@+id/my_groups"
             android:icon="@drawable/qr_code"
             android:title="My Groups" />
