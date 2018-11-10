@@ -22,4 +22,7 @@ public interface FormApi {
 
     @POST("/form/save")
     Call<Void> saveAnswer(@Body SaveAnswersRequest request);
+
+    @GET("/form")
+    Call<Form[]> getAllForms();
 }

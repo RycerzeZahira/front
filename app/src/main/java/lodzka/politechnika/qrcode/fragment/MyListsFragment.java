@@ -31,9 +31,9 @@ public class MyListsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.my_lists_fragment, viewGroup, false);
 
+//        final String formCode = "RMAEYGBBPZPBZ77UYAFISMCQ2L3WF61V";
 
-        final String formCode = "RMAEYGBBPZPBZ77UYAFISMCQ2L3WF61V";
-        ApiUtils.getFormApi().getFormsInGroup(formCode).enqueue(new Callback<Form[]>() {
+        ApiUtils.getFormApi().getAllForms().enqueue(new Callback<Form[]>() {
             @Override
             public void onResponse(Call<Form[]> call, Response<Form[]> response) {
                 formList = new ArrayList<>(Arrays.asList(response.body()));
