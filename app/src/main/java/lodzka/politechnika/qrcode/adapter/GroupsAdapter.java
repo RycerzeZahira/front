@@ -71,7 +71,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
 
         public GroupsViewHolder(View itemView){
             super(itemView);
-            groupName = itemView.findViewById(R.id.group_name);
+            groupName = itemView.findViewById(R.id.list_name);
             deleteButton = itemView.findViewById(R.id.delete_button);
         }
     }
