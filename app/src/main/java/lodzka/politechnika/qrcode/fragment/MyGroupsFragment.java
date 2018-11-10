@@ -2,15 +2,20 @@ package lodzka.politechnika.qrcode.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import lodzka.politechnika.qrcode.R;
+import lodzka.politechnika.qrcode.adapter.GroupsAdapter;
 import lodzka.politechnika.qrcode.api.ApiUtils;
 import lodzka.politechnika.qrcode.model.Group;
 import retrofit2.Call;
@@ -19,31 +24,47 @@ import retrofit2.Response;
 
 public class MyGroupsFragment extends Fragment {
 
-    private ArrayList<Group> groupArrayList = new ArrayList<>();
-    private ArrayAdapter<Group> listAdapter;
-    private ListView listView;
+    private GroupsAdapter groupsAdapter;
+    private RecyclerView recyclerView;
+    private Button createGroupButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.my_groups_fragment, viewGroup, false);
-        listView = view.findViewById(R.id.listView);
-        getGroups();
-        return view;
-    }
+
+        createGroupButton = view.findViewById(R.id.create_group_button);
+
+        createGroupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new CreateGroupFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
+
+            }
+        });
 
 
-    private void getGroups() {
         ApiUtils.getGroupApi().getMyGroupsList().enqueue(new Callback<ArrayList<Group>>() {
             @Override
             public void onResponse(Call<ArrayList<Group>> call, Response<ArrayList<Group>> response) {
-                groupArrayList.addAll(response.body());
-                listAdapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, groupArrayList);
-                listView.setAdapter(listAdapter);
+
+                generateGroupList(response.body(), view);
+
             }
 
             @Override
             public void onFailure(Call<ArrayList<Group>> call, Throwable t) {
             }
         });
+
+
+        return view;
+    }
+
+    private void generateGroupList(ArrayList<Group> groupList, final View view) {
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        groupsAdapter = new GroupsAdapter(groupList);
+        recyclerView.setAdapter(groupsAdapter);
     }
 }

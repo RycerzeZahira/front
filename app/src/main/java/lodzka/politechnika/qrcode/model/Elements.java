@@ -61,4 +61,9 @@ public class Elements {
     public void setParent(String parent) {
         this.parent = parent;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
