@@ -52,8 +52,6 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListsViewHol
         elementsAdapter = new ElementsAdapter(elements);
         holder.listName.setText(root.getName());
         holder.recyclerView.setAdapter(elementsAdapter);
-
-
     }
 
     @Override

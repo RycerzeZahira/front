@@ -2,15 +2,12 @@ package lodzka.politechnika.qrcode.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -47,9 +44,7 @@ public class MyGroupsFragment extends Fragment {
         ApiUtils.getGroupApi().getMyGroupsList().enqueue(new Callback<ArrayList<Group>>() {
             @Override
             public void onResponse(Call<ArrayList<Group>> call, Response<ArrayList<Group>> response) {
-
                 generateGroupList(response.body(), view);
-
             }
 
             @Override
