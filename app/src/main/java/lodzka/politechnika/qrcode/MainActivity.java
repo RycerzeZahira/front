@@ -14,11 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import lodzka.politechnika.qrcode.api.ApiUtils;
-import lodzka.politechnika.qrcode.fragment.CreateGroupFragment;
-import lodzka.politechnika.qrcode.fragment.MainFragment;
 import lodzka.politechnika.qrcode.fragment.CreateListFragment;
+import lodzka.politechnika.qrcode.fragment.MainFragment;
 import lodzka.politechnika.qrcode.fragment.MyGroupsFragment;
 import lodzka.politechnika.qrcode.fragment.MyListsFragment;
+import lodzka.politechnika.qrcode.fragment.QRCodeFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,6 +78,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.my_groups:
                 fragment = new MyGroupsFragment();
                 break;
+            case R.id.generateQRCode:
+                fragment = new QRCodeFragment();
+                break;
+            case R.id.readQRCode:
+                Intent intent = new Intent(this, QRCodeScanActivity.class);
+                startActivity(intent);
+                break;
             case R.id.account:
                 //TODO
                 break;
@@ -96,7 +103,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     private void logout() {
         ApiUtils.setToken("");
