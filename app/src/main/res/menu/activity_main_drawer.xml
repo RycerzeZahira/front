@@ -18,6 +18,14 @@
             android:icon="@drawable/qr_code"
             android:title="My Groups" />
         <item
+            android:id="@+id/generateQRCode"
+            android:icon="@drawable/qr_code"
+            android:title="Generate QRCode" />
+        <item
+            android:id="@+id/readQRCode"
+            android:icon="@drawable/ellipse"
+            android:title="Read QRCode" />
+        <item
             android:id="@+id/account"
             android:icon="@drawable/person"
             android:title="Account" />
