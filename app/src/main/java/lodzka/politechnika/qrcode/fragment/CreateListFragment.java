@@ -221,6 +221,8 @@ public class CreateListFragment extends Fragment {
 
     public void success() {
         Toast.makeText(getActivity().getBaseContext(), getActivity().getResources().getString(R.string.form_created), Toast.LENGTH_SHORT).show();
+        Fragment fragment = new MyListsFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
     }
 
     public void failed() {

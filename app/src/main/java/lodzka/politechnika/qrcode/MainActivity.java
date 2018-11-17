@@ -1,6 +1,8 @@
 package lodzka.politechnika.qrcode;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -106,6 +108,8 @@ public class MainActivity extends AppCompatActivity
 
     private void logout() {
         ApiUtils.setToken("");
+        SharedPreferences prefs = getSharedPreferences(ApiUtils.getPreferences(), Context.MODE_PRIVATE);
+        prefs.edit().putString(ApiUtils.getTokenName(), "").apply();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
