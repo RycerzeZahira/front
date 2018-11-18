@@ -8,6 +8,8 @@ public class ApiUtils {
     }
 
     private static final String BASE_URL = "https://api-qr-code.herokuapp.com/";
+    private static final String PREFERENCES = "PREFERENCES";
+    private static final String TOKEN_NAME = "TOKEN";
     private static String token;
 
     public static UserApi getAUserApi() {
@@ -28,5 +30,13 @@ public class ApiUtils {
 
     public static void setToken(String token) {
         ApiUtils.token = token;
+    }
+
+    public static String getPreferences() {
+        return PREFERENCES;
+    }
+
+    public static String getTokenName() {
+        return TOKEN_NAME;
     }
 }

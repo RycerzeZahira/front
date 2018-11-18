@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import lodzka.politechnika.qrcode.R;
 import lodzka.politechnika.qrcode.Utils;
@@ -57,15 +58,19 @@ public class AnswerFragment extends Fragment {
                 ApiUtils.getFormApi().saveAnswer(new SaveAnswersRequest(formCode, root)).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        System.out.println("WORK");
+                        makeToast("Answer added");
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        System.out.println("CHUJA WORK");
+                        makeToast("Failed to add answer");
                     }
                 });
             }
         });
+    }
+
+    private void makeToast(String status) {
+        Toast.makeText(getActivity().getBaseContext(), status, Toast.LENGTH_SHORT).show();
     }
 }

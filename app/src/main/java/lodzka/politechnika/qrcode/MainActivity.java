@@ -1,6 +1,8 @@
 package lodzka.politechnika.qrcode;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,13 +14,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import lodzka.politechnika.qrcode.api.ApiUtils;
+import lodzka.politechnika.qrcode.fragment.AccountFragment;
 import lodzka.politechnika.qrcode.fragment.CreateListFragment;
 import lodzka.politechnika.qrcode.fragment.MainFragment;
 import lodzka.politechnika.qrcode.fragment.MyGroupsFragment;
 import lodzka.politechnika.qrcode.fragment.MyListsFragment;
 import lodzka.politechnika.qrcode.fragment.QRCodeFragment;
+import lodzka.politechnika.qrcode.model.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         fragment = new MainFragment();
 
+        getUserMail();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +55,23 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void getUserMail() {
+
+        final TextView mail = (TextView) findViewById(R.id.toolbar_title);
+        ApiUtils.getAUserApi().getUserProfile().enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                mail.setText(response.body().getEmail());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+
     }
 
     @Override
@@ -86,7 +112,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
             case R.id.account:
-                //TODO
+                fragment = new AccountFragment();
                 break;
             case R.id.logout:
                 logout();
@@ -106,6 +132,8 @@ public class MainActivity extends AppCompatActivity
 
     private void logout() {
         ApiUtils.setToken("");
+        SharedPreferences prefs = getSharedPreferences(ApiUtils.getPreferences(), Context.MODE_PRIVATE);
+        prefs.edit().putString(ApiUtils.getTokenName(), "").apply();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

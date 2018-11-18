@@ -1,7 +1,9 @@
 package lodzka.politechnika.qrcode;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(lodzka.politechnika.qrcode.R.layout.activity_login);
         ButterKnife.bind(this);
@@ -59,13 +62,19 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
                 finish();
                 overridePendingTransition(lodzka.politechnika.qrcode.R.anim.push_left_in, lodzka.politechnika.qrcode.R.anim.push_left_out);
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences(ApiUtils.getPreferences(), Context.MODE_PRIVATE);
+        String token = prefs.getString(ApiUtils.getTokenName(), "");
+        if (token.length() > 0) {
+            ApiUtils.setToken(token);
+            onLoginSuccess();
+        }
     }
 
     public void login() {
@@ -91,6 +100,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JwtAuthenticationResponse> call, Response<JwtAuthenticationResponse> response) {
                 if (response.isSuccessful()) {
+                    SharedPreferences prefs = getSharedPreferences(ApiUtils.getPreferences(), Context.MODE_PRIVATE);
+                    prefs.edit().putString(ApiUtils.getTokenName(), response.body().getAccessToken()).apply();
                     ApiUtils.setToken(response.body().getAccessToken());
                     progressDialog.dismiss();
                     onLoginSuccess();
