@@ -59,7 +59,7 @@ public class MyGroupsFragment extends Fragment {
     private void generateGroupList(ArrayList<Group> groupList, final View view) {
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        groupsAdapter = new GroupsAdapter(groupList);
+        groupsAdapter = new GroupsAdapter(groupList,view.getContext());
         recyclerView.setAdapter(groupsAdapter);
     }
 }
