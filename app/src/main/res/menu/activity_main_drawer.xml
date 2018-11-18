@@ -28,7 +28,7 @@
         <item
             android:id="@+id/account"
             android:icon="@drawable/person"
-            android:title="Account" />
+            android:title="Change Password" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"

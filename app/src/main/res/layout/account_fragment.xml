@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <TextView
+                android:id="@+id/oldPasswordTexView"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="242dp"
+                android:layout_marginRight="242dp"
+                android:text="Old Password" />
+
+            <EditText
+                android:id="@+id/oldPassword"
+                android:layout_width="150dp"
+                android:layout_height="43dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="205dp"
+                android:layout_marginRight="205dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="96dp"
+            android:layout_marginLeft="96dp"
+            android:layout_marginTop="181dp">
+
+            <TextView
+                android:id="@+id/newPasswordTexView"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="New Password" />
+
+            <EditText
+                android:id="@+id/newPassword"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="81dp"
+            android:layout_marginBottom="76dp">
+
+            <TextView
+                android:id="@+id/reOldPasswordTexView"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Re New Password" />
+
+            <EditText
+                android:id="@+id/reNewPassword"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Change" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

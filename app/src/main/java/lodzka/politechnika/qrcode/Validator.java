@@ -15,6 +15,10 @@ public class Validator {
         return isValidEmail(email) && isValidPassword(password);
     }
 
+    public boolean validate(EditText newPassword, EditText reNewPassword, boolean flag) {
+        return isValidPassword(newPassword, reNewPassword);
+    }
+
     public boolean validate(EditText email, EditText password, EditText passwordConfirmation) {
         return isValidEmail(email) && isValidPassword(password, passwordConfirmation);
     }
@@ -25,8 +29,7 @@ public class Validator {
         if (passwordValue.isEmpty() || passwordValue.length() < 8) {
             password.setError(context.getResources().getString(R.string.longer_than_8));
             return false;
-        }
-        else {
+        } else {
             password.setError(null);
             return true;
         }
@@ -39,12 +42,10 @@ public class Validator {
         if (passwordValue.isEmpty() || passwordValue.length() < 8) {
             password.setError(context.getResources().getString(R.string.longer_than_8));
             return false;
-        }
-        else if(reEnterPasswordValue.isEmpty() || !(reEnterPasswordValue.equals(passwordValue))) {
+        } else if (reEnterPasswordValue.isEmpty() || !(reEnterPasswordValue.equals(passwordValue))) {
             reEnterPassword.setError(context.getResources().getString(R.string.password_do_not_match));
             return false;
-        }
-        else {
+        } else {
             password.setError(null);
             reEnterPassword.setError(null);
             return true;
