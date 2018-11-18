@@ -1,17 +1,23 @@
 package lodzka.politechnika.qrcode.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import lodzka.politechnika.qrcode.R;
 import lodzka.politechnika.qrcode.api.ApiUtils;
+import lodzka.politechnika.qrcode.fragment.FormsForSpecificGroupFragment;
 import lodzka.politechnika.qrcode.model.Group;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +29,8 @@ import retrofit2.Response;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsViewHolder> {
 
+    private FragmentManager fragmentManager;
+    private Context context;
     private List<Group> groupList;
 
     public List<Group> getGroupList() {
@@ -35,6 +43,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
 
 
     public GroupsAdapter() {
+
     }
 
     @NonNull
@@ -76,8 +85,9 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
     }
 
 
-    public GroupsAdapter(List<Group> groupList) {
+    public GroupsAdapter(List<Group> groupList, Context context) {
         this.groupList = groupList;
+        this.context = context;
     }
 
     public class GroupsViewHolder extends RecyclerView.ViewHolder {
@@ -85,8 +95,20 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
         private Button deleteButton;
         private TextView sizeGroup;
 
-        public GroupsViewHolder(View itemView) {
+        public GroupsViewHolder(final View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    FragmentActivity fragmentActivity = (FragmentActivity) context;
+                    fragmentManager = fragmentActivity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.miscFragment, new FormsForSpecificGroupFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+            });
             groupName = itemView.findViewById(R.id.list_name);
             sizeGroup = itemView.findViewById(R.id.sizeGroup);
             deleteButton = itemView.findViewById(R.id.delete_button);
