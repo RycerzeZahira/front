@@ -6,12 +6,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -58,6 +58,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
         final Group group = groupList.get(position);
         holder.groupName.setText(group.getName());
         holder.sizeGroup.setText(String.valueOf(group.getUsers().size()));
+        holder.groupCode.setText(group.getCode());
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +95,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
         private TextView groupName;
         private Button deleteButton;
         private TextView sizeGroup;
+        private TextView groupCode;
 
         public GroupsViewHolder(final View itemView) {
             super(itemView);
@@ -101,14 +103,16 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
 
                 @Override
                 public void onClick(View v) {
+                    Log.d("Group name", groupName.getText().toString());
                     FragmentActivity fragmentActivity = (FragmentActivity) context;
                     fragmentManager = fragmentActivity.getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.miscFragment, new FormsForSpecificGroupFragment());
+                    fragmentTransaction.replace(R.id.miscFragment, new FormsForSpecificGroupFragment(groupCode.getText().toString()));
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }
             });
+            groupCode = itemView.findViewById(R.id.group_code);
             groupName = itemView.findViewById(R.id.list_name);
             sizeGroup = itemView.findViewById(R.id.sizeGroup);
             deleteButton = itemView.findViewById(R.id.delete_button);
