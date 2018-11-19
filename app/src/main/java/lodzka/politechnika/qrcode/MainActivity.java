@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.readQRCode:
                 fragment = new QRCodeScanFragment();
+
                 break;
             case R.id.account:
                 fragment = new AccountFragment();
@@ -132,5 +133,10 @@ public class MainActivity extends AppCompatActivity
         prefs.edit().putString(ApiUtils.getTokenName(), "").apply();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        fragment.onActivityResult(requestCode,resultCode,data);
     }
 }

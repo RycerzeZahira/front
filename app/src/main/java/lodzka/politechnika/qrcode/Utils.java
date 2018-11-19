@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class Utils {
 
+    public final static String REDAED_FORM = "readedForm";
     public final static String FORM = "form";
     public final static String FORM_CODE = "formCode";
     public final static Integer SAVE_LENGTH = 32;
