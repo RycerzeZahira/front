@@ -22,7 +22,7 @@ import lodzka.politechnika.qrcode.fragment.CreateListFragment;
 import lodzka.politechnika.qrcode.fragment.MainFragment;
 import lodzka.politechnika.qrcode.fragment.MyGroupsFragment;
 import lodzka.politechnika.qrcode.fragment.MyListsFragment;
-import lodzka.politechnika.qrcode.fragment.QRCodeFragment;
+import lodzka.politechnika.qrcode.fragment.QRCodeScanFragment;
 import lodzka.politechnika.qrcode.model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -104,12 +104,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.my_groups:
                 fragment = new MyGroupsFragment();
                 break;
-            case R.id.generateQRCode:
-                fragment = new QRCodeFragment();
-                break;
             case R.id.readQRCode:
-                Intent intent = new Intent(this, QRCodeScanActivity.class);
-                startActivity(intent);
+                fragment = new QRCodeScanFragment();
                 break;
             case R.id.account:
                 fragment = new AccountFragment();

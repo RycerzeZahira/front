@@ -1,16 +1,27 @@
 package lodzka.politechnika.qrcode.adapter;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lodzka.politechnika.qrcode.R;
+import lodzka.politechnika.qrcode.Utils;
+import lodzka.politechnika.qrcode.fragment.FormsForSpecificGroupFragment;
+import lodzka.politechnika.qrcode.fragment.QRCodeGenerateFragment;
 import lodzka.politechnika.qrcode.model.Elements;
 import lodzka.politechnika.qrcode.model.Root;
 
@@ -22,6 +33,8 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListsViewHol
 
     private List<Root> formList;
     private ElementsAdapter elementsAdapter;
+    private FragmentManager fragmentManager;
+    private Context context;
 
     public List<Root> getFormList() {
         return formList;
@@ -31,8 +44,9 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListsViewHol
         this.formList = formList;
     }
 
-    public ListsAdapter(List<Root> formList) {
+    public ListsAdapter(List<Root> formList, Context context) {
         this.formList = formList;
+        this.context = context;
     }
 
     public ListsAdapter() {
@@ -63,8 +77,28 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListsViewHol
         private TextView listName;
         private RecyclerView recyclerView;
 
-        public ListsViewHolder(View itemView) {
+        public ListsViewHolder(final View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    FragmentActivity fragmentActivity = (FragmentActivity) context;
+                    fragmentManager = fragmentActivity.getSupportFragmentManager();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(Utils.FORM, (Serializable) getFormList().get(getAdapterPosition()));
+                    bundle.putString(Utils.FORM_CODE, getFormList().get(getAdapterPosition()).getCode());
+                    Fragment fragment = new QRCodeGenerateFragment();
+                    fragment.setArguments(bundle);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.miscFragment, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+
+                }
+            });
             listName = itemView.findViewById(R.id.list_name);
             recyclerView = itemView.findViewById(R.id.data_list_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));

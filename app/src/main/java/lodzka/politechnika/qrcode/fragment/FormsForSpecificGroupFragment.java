@@ -67,7 +67,7 @@ public class FormsForSpecificGroupFragment extends Fragment {
     private void generateList(List<Root> formList, final View view) {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        listAdapter = new ListsAdapter(formList);
+        listAdapter = new ListsAdapter(formList,view.getContext());
         recyclerView.setAdapter(listAdapter);
     }
 }
