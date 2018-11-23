@@ -48,6 +48,7 @@ public class AnswerFragment extends Fragment {
 
     private void setAdapter() {
         AnswerAdapter listAdapter = new AnswerAdapter(getContext(), root.getElements());
+        listView.setDivider(null);
         listView.setAdapter(listAdapter);
     }
 

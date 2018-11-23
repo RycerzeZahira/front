@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import lodzka.politechnika.qrcode.api.ApiUtils;
-import lodzka.politechnika.qrcode.fragment.AccountFragment;
+import lodzka.politechnika.qrcode.fragment.ChangePasswordFragment;
 import lodzka.politechnika.qrcode.fragment.CreateListFragment;
 import lodzka.politechnika.qrcode.fragment.MainFragment;
 import lodzka.politechnika.qrcode.fragment.MyGroupsFragment;
@@ -95,10 +95,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.my_lists:
+            case R.id.my_forms:
                 fragment = new MyListsFragment();
                 break;
-            case R.id.new_list:
+            case R.id.new_form:
                 fragment = new CreateListFragment();
                 break;
             case R.id.my_groups:
@@ -106,10 +106,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.readQRCode:
                 fragment = new QRCodeScanFragment();
-
                 break;
-            case R.id.account:
-                fragment = new AccountFragment();
+            case R.id.change_password:
+                fragment = new ChangePasswordFragment();
                 break;
             case R.id.logout:
                 logout();
