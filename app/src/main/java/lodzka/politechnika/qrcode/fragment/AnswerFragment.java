@@ -42,7 +42,7 @@ public class AnswerFragment extends Fragment {
     }
 
     private void initBundles() {
-        root = (Root) getArguments().getSerializable(Utils.FORM);
+        root = (Root) getArguments().getSerializable(Utils.REDAED_FORM);
         formCode = getArguments().getString(Utils.FORM_CODE);
     }
 
