@@ -1,5 +1,6 @@
 package lodzka.politechnika.qrcode.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +32,14 @@ public class MyGroupsFragment extends Fragment {
 
         createGroupButton = view.findViewById(R.id.create_group_button);
 
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(view.getContext());
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage(view.getResources().getString(R.string.loading));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +54,7 @@ public class MyGroupsFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<Group>> call, Response<ArrayList<Group>> response) {
                 generateGroupList(response.body(), view);
+                progressDialog.dismiss();
             }
 
             @Override

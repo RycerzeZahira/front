@@ -33,7 +33,34 @@
     <string name="group_added">Group added</string>
     <string name="list_add_failed">Failed to add a list</string>
     <string name="error_with_app">Error with application</string>
-
+    <string name="my_forms">My Forms</string>
+    <string name="create_new_form">Create New Form</string>
+    <string name="my_groups">My Groups</string>
+    <string name="read_qrcode">Read QRCode</string>
+    <string name="change_password">Change password</string>
+    <string name="log_out">Log Out</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="change">Change</string>
+    <string name="bad_old_password">Bad old password</string>
+    <string name="password_changed">Password changed</string>
+    <string name="create_group">Create group</string>
+    <string name="size">Size: </string>
+    <string name="csv">Csv</string>
+    <string name="answer">Answer</string>
+    <string name="create_new_group">Create New Group</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="insert_group_name">Insert group name</string>
+    <string name="save">Save</string>
+    <string name="public_group">Public</string>
+    <string name="insert_field_name">Insert field name</string>
+    <string name="insert_list_name">Insert list name</string>
+    <string name="add_field">Add field</string>
+    <string name="expiration_date">Expiration date:</string>
+    <string name="group">Group:</string>
+    <string name="name">Name</string>
+    <string name="your_data_for">Your data for</string>
+    <string name="loading">Loading</string>
+    <string name="create_your_new_form">Create your new form</string>
 </resources>

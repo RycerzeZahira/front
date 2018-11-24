@@ -20,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AccountFragment extends Fragment {
+public class ChangePasswordFragment extends Fragment {
 
     private EditText oldPassword;
     private EditText newPassword;
@@ -31,7 +31,7 @@ public class AccountFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.account_fragment, viewGroup, false);
+        final View view = inflater.inflate(R.layout.change_password_fragment, viewGroup, false);
         initialize(view);
         return view;
     }
@@ -53,7 +53,6 @@ public class AccountFragment extends Fragment {
 
     private void changePassword() {
         if (!validator.validate(newPassword, reNewPassword, true)) {
-            makeToast("Validate failed");
             return;
         }
 

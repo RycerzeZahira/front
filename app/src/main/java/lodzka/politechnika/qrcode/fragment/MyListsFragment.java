@@ -1,5 +1,6 @@
 package lodzka.politechnika.qrcode.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,9 +31,11 @@ public class MyListsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.my_lists_fragment, viewGroup, false);
-
-//        final String formCode = "RMAEYGBBPZPBZ77UYAFISMCQ2L3WF61V";
-
+        final ProgressDialog progressDialog = new ProgressDialog(view.getContext());
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage(view.getResources().getString(R.string.loading));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
         ApiUtils.getFormApi().getAllForms().enqueue(new Callback<Form[]>() {
             @Override
             public void onResponse(Call<Form[]> call, Response<Form[]> response) {
@@ -42,22 +45,7 @@ public class MyListsFragment extends Fragment {
                     forms.add(form.getRoot());
                 }
                 generateList(forms, view);
-//                recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                    @Override
-//                    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-//                                            long arg3) {
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable(Utils.FORM, (Serializable) listAdapter.getItem(arg2));
-//                        bundle.putString(Utils.FORM_CODE, formCode);
-//                        Fragment fragment = new AnswerFragment();
-//                        fragment.setArguments(bundle);
-//                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                        fragmentTransaction.replace(R.id.miscFragment, fragment);
-//                        fragmentTransaction.addToBackStack(null);
-//                        fragmentTransaction.commit();
-//                    }
-//                });
+                progressDialog.dismiss();
             }
 
             @Override
