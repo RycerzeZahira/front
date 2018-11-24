@@ -48,10 +48,12 @@ public class Utils {
 
     public static void saveState(Context context, List<QRCodeForm> qrCodeFormList){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
         if (preferences.contains(Utils.LIST)) {
+            SharedPreferences.Editor editor = preferences.edit();
             editor.remove(Utils.LIST);
+            editor.apply();
         }
+        SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(qrCodeFormList);
         editor.putString(Utils.LIST, json);

@@ -129,10 +129,9 @@ public class CreateListFragment extends Fragment {
         addField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fieldName.getText().toString().matches("")) {
-//                    Toast.makeText(v.getContext(), "Please fill inputs", Toast.LENGTH_SHORT);
-                } else {
-                    qrCodeFormList.add(new QRCodeForm(fieldName.getText().toString(), spinner.getSelectedItem().toString()));
+                String text = fieldName.getText().toString().toLowerCase();
+                if (textFieldIsUnique(text)) {
+                    qrCodeFormList.add(new QRCodeForm(text, spinner.getSelectedItem().toString()));
                     qrCodeAdapter.notifyDataSetChanged();
                     fieldName.setText("");
                     Utils.saveState(getContext(), qrCodeFormList);
@@ -228,6 +227,7 @@ public class CreateListFragment extends Fragment {
 
     public void success() {
         Toast.makeText(getActivity().getBaseContext(), getActivity().getResources().getString(R.string.form_created), Toast.LENGTH_SHORT).show();
+        clearState();
         Fragment fragment = new MyListsFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
     }
@@ -272,5 +272,31 @@ public class CreateListFragment extends Fragment {
             qrCodeFormList = gson.fromJson(json, type);
         }
     }
+
+    private void clearState() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (preferences.contains(Utils.LIST)) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(Utils.LIST);
+            editor.apply();
+        }
+    }
+
+    private boolean textFieldIsEmpty(String text) {
+        return text.matches("");
+    }
+
+    private boolean textFieldIsUnique(String text) {
+        if (textFieldIsEmpty(text)) {
+            return false;
+        }
+        for (QRCodeForm qrCodeForm : qrCodeFormList) {
+            if (qrCodeForm.getFieldName().matches(text)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }
