@@ -129,7 +129,7 @@ public class CreateListFragment extends Fragment {
         addField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = fieldName.getText().toString().toLowerCase();
+                String text = fieldName.getText().toString().toLowerCase().trim();
                 if (textFieldIsUnique(text)) {
                     qrCodeFormList.add(new QRCodeForm(text, spinner.getSelectedItem().toString()));
                     qrCodeAdapter.notifyDataSetChanged();
