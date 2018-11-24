@@ -1,10 +1,12 @@
 package lodzka.politechnika.qrcode.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Bartek on 2018-10-29.
  */
 
-public class QRCodeForm {
+public class QRCodeForm implements Serializable {
     private String fieldName;
     private String fieldType;
 
