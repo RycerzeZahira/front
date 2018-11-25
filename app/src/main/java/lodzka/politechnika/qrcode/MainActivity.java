@@ -19,7 +19,6 @@ import android.widget.TextView;
 import lodzka.politechnika.qrcode.api.ApiUtils;
 import lodzka.politechnika.qrcode.fragment.ChangePasswordFragment;
 import lodzka.politechnika.qrcode.fragment.CreateListFragment;
-import lodzka.politechnika.qrcode.fragment.MainFragment;
 import lodzka.politechnika.qrcode.fragment.MyGroupsFragment;
 import lodzka.politechnika.qrcode.fragment.MyListsFragment;
 import lodzka.politechnika.qrcode.fragment.QRCodeScanFragment;
@@ -38,10 +37,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        fragmentManager = getSupportFragmentManager();
-        fragment = new MainFragment();
 
         getUserMail();
+
+        fragmentManager = getSupportFragmentManager();
+        fragment = new MyListsFragment();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.miscFragment, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
