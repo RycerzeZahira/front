@@ -22,6 +22,9 @@ public interface GroupApi {
     @GET("/group/")
     Call<ArrayList<Group>> getMyGroupsList();
 
+    @GET("/group/getPublicGroupsWithoutMe")
+    Call<ArrayList<Group>> getPublicGroups();
+
     @DELETE("/group/{code}")
     Call<Void> deleteGroup(@Path("code") String code);
 }
