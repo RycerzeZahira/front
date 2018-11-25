@@ -58,7 +58,6 @@ public class AddToGroupFragment extends Fragment {
                 });
                 Fragment fragment = new MyGroupsFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
-
             }
         });
 
