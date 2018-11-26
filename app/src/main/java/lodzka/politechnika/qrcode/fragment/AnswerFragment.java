@@ -56,15 +56,27 @@ public class AnswerFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ApiUtils.getFormApi().saveAnswer(new SaveAnswersRequest(formCode, root)).enqueue(new Callback<Void>() {
+                ApiUtils.getGroupApi().addMeToGroup(formCode).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        makeToast("Answer added");
+                        if (response.code() == 200) {
+                            ApiUtils.getFormApi().saveAnswer(new SaveAnswersRequest(formCode, root)).enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    makeToast("Answer added");
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    makeToast("Failed to add answer");
+                                }
+                            });
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        makeToast("Failed to add answer");
+
                     }
                 });
             }
