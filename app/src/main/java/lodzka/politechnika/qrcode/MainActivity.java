@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
             }
         });
 
@@ -140,6 +139,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        fragment.onActivityResult(requestCode,resultCode,data);
+        fragment.onActivityResult(requestCode, resultCode, data);
+        fragment = new MyListsFragment();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.miscFragment, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commitAllowingStateLoss();
+
     }
+
+
 }
