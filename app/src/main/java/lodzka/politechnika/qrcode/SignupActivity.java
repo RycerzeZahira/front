@@ -76,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Signing up...");
+        progressDialog.setMessage("Rejestrowanie...");
         progressDialog.show();
 
         String email = emailText.getText().toString();
@@ -112,13 +112,13 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        Toast.makeText(getBaseContext(), "Sign up completed. Please log in", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Rejestracja zakończona, aby aktywować konto wejdź na maila", Toast.LENGTH_LONG).show();
         startActivity(intent);
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Sign up failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Rejstracja nie powiodła się", Toast.LENGTH_LONG).show();
 
         signupButton.setEnabled(true);
     }

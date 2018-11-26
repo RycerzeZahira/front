@@ -7,7 +7,7 @@ public class ApiUtils {
     private ApiUtils() {
     }
 
-    private static final String BASE_URL = "http://localhost:8080/";
+    private static final String BASE_URL = "https://api-qr-code.herokuapp.com/";
     private static final String PREFERENCES = "PREFERENCES";
     private static final String TOKEN_NAME = "TOKEN";
     private static String token;

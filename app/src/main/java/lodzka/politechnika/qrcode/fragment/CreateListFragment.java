@@ -98,7 +98,7 @@ public class CreateListFragment extends Fragment {
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.YEAR, year-2);
                 calendar.set(Calendar.MONTH, dayOfMonth);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateDateTextView(view);
@@ -212,7 +212,7 @@ public class CreateListFragment extends Fragment {
 
 
     void updateDateTextView(View view) {
-        String dateFormat = "yyyy-MM-dd";
+        String dateFormat = "dd-MM-yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
         datePick.setText(sdf.format(calendar.getTime()));
     }
