@@ -140,11 +140,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         fragment.onActivityResult(requestCode, resultCode, data);
-        fragment = new MyListsFragment();
+/*        fragment = new MyListsFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.miscFragment, fragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commitAllowingStateLoss();
+        fragmentTransaction.commitAllowingStateLoss();*/
 
     }
 
