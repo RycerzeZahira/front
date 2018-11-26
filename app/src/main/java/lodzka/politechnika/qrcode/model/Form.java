@@ -24,6 +24,9 @@ public class Form {
     @SerializedName("group")
     private Group group;
 
+    @SerializedName("code")
+    private String code;
+
 
     public Form() {
     }
@@ -55,5 +58,13 @@ public class Form {
 
     public Group getGroup() {
         return group;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -23,6 +23,9 @@ public interface FormApi {
     @POST("/form/save")
     Call<Void> saveAnswer(@Body SaveAnswersRequest request);
 
+    @POST("/mail/{formcode}")
+    Call<Void> generateCSV(@Path("formcode") String code);
+
     @GET("/form")
     Call<Form[]> getAllForms();
 }
