@@ -3,6 +3,7 @@ package lodzka.politechnika.qrcode.api;
 
 import lodzka.politechnika.qrcode.api.payload.AuthenticationRequest;
 import lodzka.politechnika.qrcode.api.payload.JwtAuthenticationResponse;
+import lodzka.politechnika.qrcode.model.Email;
 import lodzka.politechnika.qrcode.model.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,4 +24,7 @@ public interface UserApi {
 
     @POST("user/changePassword")
     Call<Void> changePassword(@Query("oldPassword") String oldPassword, @Query("newPassword") String newPassword);
+
+    @POST("user/sendResetPasswordMail")
+    Call<Void> resetPassword(@Body Email email);
 }

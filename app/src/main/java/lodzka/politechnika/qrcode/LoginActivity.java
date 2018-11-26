@@ -37,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(lodzka.politechnika.qrcode.R.id.link_signup)
     TextView signupLink;
 
+    @BindView(R.id.link_forgot_password)
+    TextView forgotPasswordLink;
+
     ProgressDialog progressDialog;
 
     @Override
@@ -66,6 +69,14 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
                 finish();
                 overridePendingTransition(lodzka.politechnika.qrcode.R.anim.push_left_in, lodzka.politechnika.qrcode.R.anim.push_left_out);
+            }
+        });
+
+        forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ForgotPasswordActivity.class);
+               startActivity(intent);
             }
         });
 
