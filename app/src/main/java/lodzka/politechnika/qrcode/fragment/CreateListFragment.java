@@ -1,7 +1,9 @@
 package lodzka.politechnika.qrcode.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,9 +37,9 @@ import lodzka.politechnika.qrcode.api.ApiUtils;
 import lodzka.politechnika.qrcode.api.FormApi;
 import lodzka.politechnika.qrcode.api.GroupApi;
 import lodzka.politechnika.qrcode.model.Elements;
+import lodzka.politechnika.qrcode.model.Form;
 import lodzka.politechnika.qrcode.model.Group;
 import lodzka.politechnika.qrcode.model.QRCodeForm;
-import lodzka.politechnika.qrcode.model.Form;
 import lodzka.politechnika.qrcode.model.Root;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,6 +74,7 @@ public class CreateListFragment extends Fragment {
         addField = view.findViewById(R.id.add_field);
         fieldName = view.findViewById(R.id.input_name);
         qrCodeFormList = new ArrayList<>();
+        getState();
         qrCodeAdapter = new QRCodeAdapter(qrCodeFormList);
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
@@ -125,10 +132,10 @@ public class CreateListFragment extends Fragment {
                 if (fieldName.getText().toString().matches("")) {
 //                    Toast.makeText(v.getContext(), "Please fill inputs", Toast.LENGTH_SHORT);
                 } else {
-
                     qrCodeFormList.add(new QRCodeForm(fieldName.getText().toString(), spinner.getSelectedItem().toString()));
                     qrCodeAdapter.notifyDataSetChanged();
                     fieldName.setText("");
+                    Utils.saveState(getContext(), qrCodeFormList);
                 }
             }
         });
@@ -253,4 +260,17 @@ public class CreateListFragment extends Fragment {
             }
         });
     }
+
+
+    private void getState() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (preferences.contains("list")) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<QRCodeForm>>() {
+            }.getType();
+            String json = preferences.getString(Utils.LIST, "");
+            qrCodeFormList = gson.fromJson(json, type);
+        }
+    }
+
 }

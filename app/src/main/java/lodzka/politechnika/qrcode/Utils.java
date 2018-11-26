@@ -1,7 +1,16 @@
 package lodzka.politechnika.qrcode;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.google.gson.Gson;
+
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Random;
+
+import lodzka.politechnika.qrcode.model.QRCodeForm;
 
 /**
  * Created by Bartek on 2018-10-30.
@@ -9,6 +18,7 @@ import java.util.Random;
 
 public class Utils {
 
+    public final static String LIST = "list";
     public final static String REDAED_FORM = "readedForm";
     public final static String FORM = "form";
     public final static String FORM_CODE = "formCode";
@@ -34,5 +44,17 @@ public class Utils {
             sb.append(randomChar());
         }
         return sb.toString();
+    }
+
+    public static void saveState(Context context, List<QRCodeForm> qrCodeFormList){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.contains(Utils.LIST)) {
+            editor.remove(Utils.LIST);
+        }
+        Gson gson = new Gson();
+        String json = gson.toJson(qrCodeFormList);
+        editor.putString(Utils.LIST, json);
+        editor.apply();
     }
 }
