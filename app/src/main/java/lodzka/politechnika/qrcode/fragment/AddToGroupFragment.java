@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,40 +24,16 @@ public class AddToGroupFragment extends Fragment {
 
     private GroupsAdapter groupsAdapter;
     private RecyclerView recyclerView;
-    private Button addMe;
-    private EditText groupCode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.add_me_to_group, viewGroup, false);
-
-        addMe = view.findViewById(R.id.add_me_button);
-        groupCode = view.findViewById(R.id.insert_group_code);
 
         final ProgressDialog progressDialog = new ProgressDialog(view.getContext());
         progressDialog.setCancelable(true);
         progressDialog.setMessage(view.getResources().getString(R.string.loading));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-
-        addMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ApiUtils.getGroupApi().addMeToGroup(groupCode.getText().toString()).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getContext(), "Added to group", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getContext(), "ERROR", Toast.LENGTH_LONG).show();
-                    }
-                });
-                Fragment fragment = new MyGroupsFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
-            }
-        });
 
         ApiUtils.getGroupApi().getPublicGroups().enqueue(new Callback<ArrayList<Group>>() {
             @Override

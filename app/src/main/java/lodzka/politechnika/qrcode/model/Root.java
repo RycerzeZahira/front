@@ -1,7 +1,5 @@
 package lodzka.politechnika.qrcode.model;
 
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -33,6 +31,8 @@ public class Root implements Serializable {
     @SerializedName("elements")
     @Expose
     private ArrayList<Elements> elements;
+
+    private String formCode;
 
 
     public Root() {
@@ -82,5 +82,13 @@ public class Root implements Serializable {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String getFormCode() {
+        return formCode;
+    }
+
+    public void setFormCode(String formCode) {
+        this.formCode = formCode;
     }
 }

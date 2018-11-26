@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -81,24 +80,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
             }
         });
 
-
-        holder.generateCsvButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Group sendGroup = groupList.get(position);
-                ApiUtils.getGroupApi().generateCSV(sendGroup.getCode()).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(context,"CSV correctly send", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(context,"Generate CSV Failure", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
     }
 
     @Override
@@ -115,7 +96,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
     public class GroupsViewHolder extends RecyclerView.ViewHolder {
         private TextView groupName;
         private Button deleteButton;
-        private Button generateCsvButton;
         private TextView sizeGroup;
         private TextView groupCode;
 
@@ -138,7 +118,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
             groupName = itemView.findViewById(R.id.list_name);
             sizeGroup = itemView.findViewById(R.id.sizeGroup);
             deleteButton = itemView.findViewById(R.id.delete_button);
-            generateCsvButton = itemView.findViewById(R.id.csv_generate);
         }
     }
 }

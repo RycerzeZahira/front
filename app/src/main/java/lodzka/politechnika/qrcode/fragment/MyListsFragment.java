@@ -42,6 +42,7 @@ public class MyListsFragment extends Fragment {
                 formList = new ArrayList<>(Arrays.asList(response.body()));
                 final List<Root> forms = new ArrayList<>();
                 for (Form form : formList) {
+                    form.getRoot().setFormCode(form.getCode());
                     forms.add(form.getRoot());
                 }
                 generateList(forms, view);
