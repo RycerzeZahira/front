@@ -22,6 +22,15 @@ public interface GroupApi {
     @GET("/group/")
     Call<ArrayList<Group>> getMyGroupsList();
 
+    @GET("/group/getPublicGroupsWithoutMe")
+    Call<ArrayList<Group>> getPublicGroups();
+
+    @GET("/group/addMyselfToGroupByFormCode/{groupCode}")
+    Call<Void> addMeToGroup(@Path("groupCode") String code);
+
+    @GET("/mail/{formcode}")
+    Call<Void> generateCSV(@Path("formcode") String code);
+
     @DELETE("/group/{code}")
     Call<Void> deleteGroup(@Path("code") String code);
 }

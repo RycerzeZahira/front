@@ -9,4 +9,5 @@
 *.iml
 app/app.iml
 .idea/modules.xml
-
+.idea/caches/build_file_checksums.ser
+app/app.iml

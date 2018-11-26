@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -57,7 +58,8 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
     public void onBindViewHolder(@NonNull final GroupsViewHolder holder, final int position) {
         final Group group = groupList.get(position);
         holder.groupName.setText(group.getName());
-        holder.sizeGroup.setText(String.valueOf(group.getUsers().size()));
+        //holder.sizeGroup.setText(String.valueOf(group.getUsers().size()));
+        holder.sizeGroup.setText("0"); //TODO Chwilowo zmienione bo back ma problem :-)
         holder.groupCode.setText(group.getCode());
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +85,18 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
         holder.generateCsvButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ///TUTAJ MUSISC ZAIMPELEMENTOWAC GENEROWANIE CSV I DODAWANIE UZYTKOWNIKA
+                Group sendGroup = groupList.get(position);
+                ApiUtils.getGroupApi().generateCSV(sendGroup.getCode()).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Toast.makeText(context,"CSV correctly send", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(context,"Generate CSV Failure", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

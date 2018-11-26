@@ -1,108 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="20dp"
+    android:paddingBottom="40dp">
 
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:background="#ececec"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/list_image"
-            android:layout_width="155dp"
-            android:layout_height="147dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/gptpit65_1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="8dp" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.55"
+            android:src="@drawable/gptpit65_1" />
 
-        <Button
-            android:id="@+id/delete_button"
-            android:layout_width="115dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginTop="8dp"
-            android:text="Delete"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:layout_marginRight="28dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/list_name"
-            android:layout_width="86dp"
-            android:layout_height="29dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="28dp"
-            android:text="Name"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/list_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.047"
-            android:layout_marginLeft="64dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Size: "
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/list_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.047"
-            android:layout_marginLeft="64dp" />
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:gravity="right"
+                    android:text="Code: "
+                    android:textSize="32sp" />
 
-        <TextView
-            android:id="@+id/sizeGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="120dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/list_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.044" />
+                <TextView
+                    android:id="@+id/group_code"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:textSize="32sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/list_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/group_code"
-            android:layout_width="82dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@+id/list_name"
-            tools:layout_editor_absoluteY="36dp" />
+            <TextView
+                android:id="@+id/list_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="64dp"
+                android:layout_weight="1"
+                android:text="Name"
+                android:textSize="32dp"
+                app:layout_constraintStart_toEndOf="@+id/list_image"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/csv_generate"
-            android:layout_width="114dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/csv"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/delete_button"
-            android:layout_marginRight="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-    </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Size: "
+                    android:textSize="32dp" />
+
+                <TextView
+                    android:id="@+id/sizeGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:layout_weight="1"
+                    android:gravity="left|start"
+                    android:textSize="32sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/delete_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="28dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Delete"
+                    android:textSize="36dp" />
+
+                <Button
+                    android:id="@+id/csv_generate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/csv"
+                    android:textSize="36dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
