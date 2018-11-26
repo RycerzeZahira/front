@@ -25,8 +25,11 @@ public interface GroupApi {
     @GET("/group/getPublicGroupsWithoutMe")
     Call<ArrayList<Group>> getPublicGroups();
 
-    @GET("/group/addMyselfToGroupByFormCode/{groupCode}")
-    Call<Void> addMeToGroup(@Path("groupCode") String code);
+    @GET("/group/addMyselfToGroupByFormCode/{formCode}")
+    Call<Void> addMeToGroup(@Path("formCode") String code);
+
+    @GET("/group/addUser/{groupCode}")
+    Call<Void> addMeToSpecificGroup(@Path("groupCode") String groupCode);
 
     @DELETE("/group/{code}")
     Call<Void> deleteGroup(@Path("code") String code);

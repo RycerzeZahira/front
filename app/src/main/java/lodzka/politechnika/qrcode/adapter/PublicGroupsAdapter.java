@@ -80,10 +80,18 @@ public class PublicGroupsAdapter extends RecyclerView.Adapter<PublicGroupsAdapte
 
                 @Override
                 public void onClick(View v) {
-                    ApiUtils.getGroupApi().addMeToGroup(groupCode.getText().toString()).enqueue(new Callback<Void>() {
+                    ApiUtils.getGroupApi().addMeToSpecificGroup(groupCode.getText().toString()).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (response.code() == 200) Toast.makeText(context, "Added to group", Toast.LENGTH_LONG).show();
+                            if (response.code() == 200) {
+                                Toast.makeText(context, "Added to group", Toast.LENGTH_LONG).show();
+                                FragmentActivity fragmentActivity = (FragmentActivity) context;
+                                fragmentManager = fragmentActivity.getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.miscFragment, new MyGroupsFragment());
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
                         }
 
                         @Override
@@ -91,12 +99,6 @@ public class PublicGroupsAdapter extends RecyclerView.Adapter<PublicGroupsAdapte
                             Toast.makeText(context, "Cannot add to group", Toast.LENGTH_LONG).show();
                         }
                     });
-                    FragmentActivity fragmentActivity = (FragmentActivity) context;
-                    fragmentManager = fragmentActivity.getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.miscFragment, new MyGroupsFragment());
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
                 }
             });
             groupCode = itemView.findViewById(R.id.group_code);
