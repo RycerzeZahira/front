@@ -98,7 +98,7 @@ public class CreateListFragment extends Fragment {
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year-2);
+                calendar.set(Calendar.YEAR, year - 2);
                 calendar.set(Calendar.MONTH, dayOfMonth);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateDateTextView(view);
@@ -229,7 +229,7 @@ public class CreateListFragment extends Fragment {
         Toast.makeText(getActivity().getBaseContext(), getActivity().getResources().getString(R.string.form_created), Toast.LENGTH_SHORT).show();
         clearState();
         Fragment fragment = new MyListsFragment();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).commitAllowingStateLoss();
     }
 
     public void failed() {
@@ -249,9 +249,11 @@ public class CreateListFragment extends Fragment {
         groupApi.getMyGroupsList().enqueue(new Callback<ArrayList<Group>>() {
             @Override
             public void onResponse(Call<ArrayList<Group>> call, Response<ArrayList<Group>> response) {
-                groupArrayList.addAll(response.body());
-                ArrayAdapter<Group> arrayAdapter = new ArrayAdapter<Group>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, groupArrayList);
-                groupSpinner.setAdapter(arrayAdapter);
+                if (response.code() == 200) {
+                    groupArrayList.addAll(response.body());
+                    ArrayAdapter<Group> arrayAdapter = new ArrayAdapter<Group>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, groupArrayList);
+                    groupSpinner.setAdapter(arrayAdapter);
+                }
             }
 
             @Override
