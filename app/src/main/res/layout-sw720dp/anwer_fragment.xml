@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_corner"
-        android:text="SAVE"
+        android:text="@string/save"
         android:textColor="@color/white"
         android:textSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
