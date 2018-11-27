@@ -19,7 +19,7 @@
     <string name="enter_valid_email">Enter valid email</string>
     <string name="longer_than_8">Longer than 8</string>
     <string name="password_do_not_match">Password do not match</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main2">ListIt</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_cannot_be_empty">Title cannot be empty</string>

@@ -49,7 +49,6 @@ public class QRCodeScanFragment extends android.support.v4.app.Fragment {
                     JSONObject obj = new JSONObject(result.getContents());
                     Gson gson = new Gson();
                     Root root = gson.fromJson(obj.toString(), Root.class);
-                    Toast.makeText(getContext(), root.getName(), Toast.LENGTH_SHORT).show();
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(Utils.REDAED_FORM, (Serializable) root);

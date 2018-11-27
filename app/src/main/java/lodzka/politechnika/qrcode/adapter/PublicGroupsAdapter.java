@@ -83,7 +83,7 @@ public class PublicGroupsAdapter extends RecyclerView.Adapter<PublicGroupsAdapte
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 200) {
-                                Toast.makeText(context, "Added to group", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Dodano do grupy", Toast.LENGTH_LONG).show();
                                 FragmentActivity fragmentActivity = (FragmentActivity) context;
                                 fragmentManager = fragmentActivity.getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -95,7 +95,7 @@ public class PublicGroupsAdapter extends RecyclerView.Adapter<PublicGroupsAdapte
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Toast.makeText(context, "Cannot add to group", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Nie mozna dodac do grupy", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
