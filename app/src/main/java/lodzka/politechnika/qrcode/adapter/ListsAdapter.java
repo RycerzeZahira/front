@@ -77,12 +77,12 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ListsViewHol
                 ApiUtils.getFormApi().generateCSV(root.getFormCode()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(context,"CSV correctly send", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"CSV zostało wysłane", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(context,"Generate CSV Failure", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Nie udało się wygenerować CSV", Toast.LENGTH_LONG).show();
                     }
                 });
             }
