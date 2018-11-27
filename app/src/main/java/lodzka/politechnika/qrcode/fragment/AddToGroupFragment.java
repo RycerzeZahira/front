@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import lodzka.politechnika.qrcode.R;
-import lodzka.politechnika.qrcode.adapter.GroupsAdapter;
+import lodzka.politechnika.qrcode.adapter.PublicGroupsAdapter;
 import lodzka.politechnika.qrcode.api.ApiUtils;
 import lodzka.politechnika.qrcode.model.Group;
 import retrofit2.Call;
@@ -22,7 +22,7 @@ import retrofit2.Response;
 
 public class AddToGroupFragment extends Fragment {
 
-    private GroupsAdapter groupsAdapter;
+    private PublicGroupsAdapter publicGroupsAdapter;
     private RecyclerView recyclerView;
 
     @Override
@@ -55,7 +55,7 @@ public class AddToGroupFragment extends Fragment {
     private void generateGroupList(ArrayList<Group> groupList, final View view) {
         recyclerView = view.findViewById(R.id.public_groups);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        groupsAdapter = new GroupsAdapter(groupList,view.getContext());
-        recyclerView.setAdapter(groupsAdapter);
+        publicGroupsAdapter = new PublicGroupsAdapter(groupList,view.getContext());
+        recyclerView.setAdapter(publicGroupsAdapter);
     }
 }
