@@ -19,14 +19,13 @@
             android:id="@+id/key"
             android:layout_width="103dp"
             android:layout_height="53dp"
-            android:textSize="40dp"
-            android:gravity="center"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
-            android:text="Text"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:textSize="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/value"

@@ -5,6 +5,7 @@
     <string name="action_settings">Ustawienia</string>
     <string name="first_name">Imię</string>
     <string name="last_name">Nazwisko</string>
+    <string name="join_us">Dołącz do nas</string>
     <string name="email">Email</string>
     <string name="email_address">Adres email</string>
     <string name="password">Hasło</string>
@@ -54,4 +55,7 @@
     <string name="your_data_for">Twoje elementy dla:</string>
     <string name="loading">Ładowanie</string>
     <string name="create_your_new_form">Stwórz nowy formularz</string>
+    <string name="add_me_to_group">Dodaj mnie do grupy</string>
+    <string name="delete">Usuń</string>
+    <string name="reset_password">Reset hasła</string>
 </resources>
