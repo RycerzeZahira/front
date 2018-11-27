@@ -58,8 +58,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
     public void onBindViewHolder(@NonNull final GroupsViewHolder holder, final int position) {
         final Group group = groupList.get(position);
         holder.groupName.setText(group.getName());
-        //holder.sizeGroup.setText(String.valueOf(group.getUsers().size()));
-        holder.sizeGroup.setText("0"); //TODO Chwilowo zmienione bo back ma problem :-)
+        holder.sizeGroup.setText(group.getUsers());
         holder.groupCode.setText(group.getCode());
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Set;
-
 /**
  * Created by Bartek on 2018-10-29.
  */
@@ -16,8 +14,8 @@ public class Group {
     @SerializedName("moderator")
     private User moderator;
 
-    @SerializedName("users")
-    private Set<User> users;
+    @SerializedName("countOfUsers")
+    private String users;
 
     @SerializedName("expiredDate")
     @Expose
@@ -73,7 +71,7 @@ public class Group {
         return moderator;
     }
 
-    public Set<User> getUsers() {
+    public String getUsers() {
         return users;
     }
 

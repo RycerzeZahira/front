@@ -52,10 +52,8 @@ public class PublicGroupsAdapter extends RecyclerView.Adapter<PublicGroupsAdapte
     public void onBindViewHolder(@NonNull final PublicGroupsAdapter.PublicGroupsViewHolder holder, final int position) {
         final Group group = groupList.get(position);
         holder.groupName.setText(group.getName());
-        //holder.sizeGroup.setText(String.valueOf(group.getUsers().size()));
-        holder.sizeGroup.setText("0"); //TODO Chwilowo zmienione bo back ma problem :-)
+        holder.sizeGroup.setText(group.getUsers());
         holder.groupCode.setText(group.getCode());
-
     }
 
     @Override
