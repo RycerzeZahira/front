@@ -47,7 +47,7 @@
     <string name="save">Zapisz</string>
     <string name="public_group">Publiczna</string>
     <string name="insert_field_name">Nazwa pola</string>
-    <string name="insert_list_name">Nazwa listy</string>
+    <string name="insert_list_name">Nazwa formularza</string>
     <string name="add_field">Dodaj pole</string>
     <string name="expiration_date">Data wygaśnięcia:</string>
     <string name="group">Grupa:</string>
@@ -58,4 +58,8 @@
     <string name="add_me_to_group">Dodaj mnie do grupy</string>
     <string name="delete">Usuń</string>
     <string name="reset_password">Reset hasła</string>
+    <string name="list_added">Formularz został dodany</string>
+    <string name="group_added">Grupa została dodana</string>
+    <string name="list_add_failed">Nie udało się dodać formularza</string>
+    <string name="error_with_app">Problem z aplikacja</string>
 </resources>

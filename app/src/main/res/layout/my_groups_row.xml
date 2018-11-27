@@ -29,44 +29,45 @@
             android:layout_marginLeft="8dp" />
 
         <Button
-            android:id="@+id/delete_button"
-            android:layout_width="66dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/delete"
-            android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+          android:id="@+id/delete_button"
+          android:layout_width="66dp"
+          android:layout_height="33dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="4dp"
+          android:layout_marginRight="4dp"
+          android:text="@string/delete"
+          android:textSize="10dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="1.0"/>
 
         <TextView
-            android:id="@+id/list_name"
-            android:layout_width="86dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/list_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.047" />
+          android:id="@+id/list_name"
+          android:layout_width="165dp"
+          android:layout_height="43dp"
+          android:layout_marginTop="28dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:text="@string/name"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/list_image"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.047"/>
 
         <TextView
-            android:id="@+id/size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="64dp"
-            android:text="@string/size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/list_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.047" />
+          android:id="@+id/size"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:text="@string/size"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/list_image"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.044"/>
 
         <TextView
             android:id="@+id/sizeGroup"
