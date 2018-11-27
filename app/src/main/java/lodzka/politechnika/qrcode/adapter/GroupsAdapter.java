@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -67,9 +68,14 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
                 ApiUtils.getGroupApi().deleteGroup(deleteGroup.getCode()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        groupList.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, groupList.size());
+                        if (response.code() != 400) {
+                            groupList.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, groupList.size());
+                            Toast.makeText(context, "Usunięto grupę", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Nie można usunąć grupy", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
