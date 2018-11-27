@@ -24,7 +24,7 @@
             android:layout_marginBottom="0dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="Add Me To Group"
+            android:text="@string/add_me_to_group"
             android:textColor="@color/black"
             android:textSize="60dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"

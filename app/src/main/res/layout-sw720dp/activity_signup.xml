@@ -48,7 +48,7 @@
             android:shadowDx="7"
             android:shadowDy="7"
             android:shadowRadius="1.6"
-            android:text="Join Us"
+            android:text="@string/join_us"
             android:textColor="@android:color/white"
             android:textSize="40dp" />
 
