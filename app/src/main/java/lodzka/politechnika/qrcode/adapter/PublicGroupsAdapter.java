@@ -84,11 +84,6 @@ public class PublicGroupsAdapter extends RecyclerView.Adapter<PublicGroupsAdapte
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.code() == 200) {
                                 Toast.makeText(context, "Added to group", Toast.LENGTH_LONG).show();
-                                try {
-                                    wait(200);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
                                 FragmentActivity fragmentActivity = (FragmentActivity) context;
                                 fragmentManager = fragmentActivity.getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
