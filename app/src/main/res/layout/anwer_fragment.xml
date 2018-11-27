@@ -66,7 +66,7 @@
         app:layout_constraintVertical_bias="0.889">
 
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="fill_parent"
             android:background="@android:color/transparent"

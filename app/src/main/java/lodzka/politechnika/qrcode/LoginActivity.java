@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setEnabled(false);
 
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("Autentyfikacja...");
         progressDialog.show();
 
         String email = emailText.getText().toString();
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Logowanie nie powiodło się. Sprawdź dane", Toast.LENGTH_LONG).show();
 
         loginButton.setEnabled(true);
     }

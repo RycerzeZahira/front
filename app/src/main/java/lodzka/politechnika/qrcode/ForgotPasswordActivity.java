@@ -42,7 +42,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     userApi.resetPassword(email).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            Toast.makeText(getBaseContext(),"SUCCESS",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(),"Hasło zostało zresetowane. Sprawdź maila",Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -51,7 +51,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Toast.makeText(getBaseContext(), "EditText could not be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Pole maila nie może być puste", Toast.LENGTH_SHORT).show();
                 }
 
 

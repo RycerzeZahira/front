@@ -3,7 +3,9 @@ package lodzka.politechnika.qrcode.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SaveAnswersRequest {
+import java.io.Serializable;
+
+public class SaveAnswersRequest implements Serializable {
 
     @SerializedName("formCode")
     @Expose
@@ -11,9 +13,9 @@ public class SaveAnswersRequest {
 
     @SerializedName("root")
     @Expose
-    private Root root;
+    private RootNew root;
 
-    public SaveAnswersRequest(String formCode, Root root) {
+    public SaveAnswersRequest(String formCode, RootNew root) {
         this.formCode = formCode;
         this.root = root;
     }
@@ -26,11 +28,11 @@ public class SaveAnswersRequest {
         this.formCode = formCode;
     }
 
-    public Root getRoot() {
+    public RootNew getRoot() {
         return root;
     }
 
-    public void setRoot(Root root) {
+    public void setRoot(RootNew root) {
         this.root = root;
     }
 }
