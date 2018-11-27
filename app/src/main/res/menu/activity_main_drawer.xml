@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+  <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/my_forms"
-            android:icon="@drawable/rectangle_3"
-            android:title="@string/my_forms" />
-        <item
-            android:id="@+id/new_form"
-            android:icon="@drawable/new_list"
-            android:title="@string/create_new_form" />
-        <item
-            android:id="@+id/my_groups"
-            android:icon="@drawable/qr_code"
-            android:title="@string/my_groups" />
-        <item
-            android:id="@+id/readQRCode"
-            android:icon="@drawable/ellipse"
-            android:title="@string/read_qrcode" />
-        <item
-            android:id="@+id/change_password"
-            android:icon="@drawable/person"
-            android:title="@string/change_password" />
-        <item
-            android:id="@+id/logout"
-            android:icon="@drawable/logout"
-            android:title="@string/log_out"
-            />
+    <item
+      android:id="@+id/my_forms"
+      android:icon="@drawable/qr_code"
+      android:title="@string/my_forms"/>
+    <item
+      android:id="@+id/new_form"
+      android:icon="@drawable/new_list"
+      android:title="@string/create_new_form"/>
+    <item
+      android:id="@+id/my_groups"
 
-    </group>
+      android:icon="@drawable/rectangle_3"
+      android:title="@string/my_groups"/>
+    <item
+      android:id="@+id/readQRCode"
+      android:icon="@drawable/ellipse"
+      android:title="@string/read_qrcode"/>
+    <item
+      android:id="@+id/change_password"
+      android:icon="@drawable/person"
+      android:title="@string/change_password"/>
+    <item
+      android:id="@+id/logout"
+      android:icon="@drawable/logout"
+      android:title="@string/log_out"
+      />
+
+  </group>
 
 
 </menu>

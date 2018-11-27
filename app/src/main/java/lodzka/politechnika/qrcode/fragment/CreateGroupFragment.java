@@ -47,7 +47,6 @@ public class CreateGroupFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
-                            makeToast(getActivity().getResources().getString(R.string.group_added));
                             Fragment fragment = new MyGroupsFragment();
                             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.miscFragment, fragment).addToBackStack(null).commit();
                         } else {
